@@ -2956,7 +2956,7 @@ namespace hooks
 							rune->GetProjectileRuntimeData().explosion = nullptr;
 							rune->GetProjectileRuntimeData().avEffect = nullptr;
 							rune->GetProjectileRuntimeData().spell = nullptr;
-                            rune->GetProjectileRuntimeData().flags.set(1 << 5);
+                            rune->GetProjectileRuntimeData().flags.set(RE::Projectile::Flags::kFading);
                             //= 1 << 5;
 							rune->GetProjectileRuntimeData().transparency = 1000000.0f;
 							rune->GetProjectileRuntimeData().scale = 0.0f;
@@ -2993,7 +2993,7 @@ namespace hooks
 								rune->GetProjectileRuntimeData().explosion = nullptr;
 								rune->GetProjectileRuntimeData().avEffect = nullptr;
 								rune->GetProjectileRuntimeData().spell = nullptr;
-                                rune->GetProjectileRuntimeData().flags.set(1 << 5);
+                                rune->GetProjectileRuntimeData().flags.set(RE::Projectile::Flags::kFading);
                                 rune->GetProjectileRuntimeData().transparency = 1000000.0f;
 								rune->GetProjectileRuntimeData().scale = 0.0f;
 								rune->GetProjectileRuntimeData().livingTime = 0.0f;
@@ -3015,7 +3015,7 @@ namespace hooks
 								rune->GetProjectileRuntimeData().explosion = nullptr;
 								rune->GetProjectileRuntimeData().avEffect = nullptr;
 								rune->GetProjectileRuntimeData().spell = nullptr;
-                                rune->GetProjectileRuntimeData().flags.set(1 << 5);
+                                rune->GetProjectileRuntimeData().flags.set(RE::Projectile::Flags::kFading);
                                 rune->GetProjectileRuntimeData().transparency = 1000000.0f;
 								rune->GetProjectileRuntimeData().scale = 0.0f;
 								rune->GetProjectileRuntimeData().livingTime = 0.0f;
