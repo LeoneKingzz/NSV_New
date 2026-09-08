@@ -40,7 +40,6 @@ add_library("${PROJECT_NAME}" SHARED
         ${CMAKE_CURRENT_BINARY_DIR}/cmake/Plugin.h
         ${CMAKE_CURRENT_BINARY_DIR}/cmake/version.rc
         src/PCH.h
-        #src/lib/PrecisionAPI.h
         src/hook.h
         src/main.cpp
         src/hook.cpp)
