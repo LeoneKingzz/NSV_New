@@ -615,43 +615,6 @@ namespace hooks
 	}
 
 
-
-	namespace Equip
-	{
-		struct DoEquip
-		{
-			static void thunk(RE::ActorEquipManager *a_manager, RE::Actor *a_actor, RE::TESBoundObject *a_object, const RE::ObjectEquipParams &a_objectEquipParams)
-			{
-				func(a_manager, a_actor, a_object, a_objectEquipParams);
-				
-				if (a_actor && a_object && OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_IsinCombat") && OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_IsMage") && a_object->IsMagicItem() && a_object->Is(RE::FormType::Spell) && OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_Equip_OK"))
-				{
-					a_actor->SetGraphVariableBool("bNSV_Equip_OK", false);
-					OnMeleeHitHook::GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 2000ms, "EquipUnequip_Update"));
-				}
-			}
-			static inline REL::Relocation<decltype(thunk)> func;
-		};
-
-		void Install()
-		{
-			std::array targets{
-				std::make_pair(RELOCATION_ID(37938, 38894), OFFSET(0xE5, 0x170)), // ActorEquipManager::EquipObject
-				std::make_pair(RELOCATION_ID(37937, 38893), 0xBC),				  // ActorEquipManager::EquipImpl?
-			};
-
-			for (const auto &[id, offset] : targets)
-			{
-				REL::Relocation<std::uintptr_t> target{id, offset};
-				stl::write_thunk_call<DoEquip>(target.address());
-			}
-		}
-	}
-
-	void install_postload(){
-		//Equip::Install();
-	}
-
 	class OurEventSink :
 		public RE::BSTEventSink<RE::TESSwitchRaceCompleteEvent>,
 		public RE::BSTEventSink<RE::TESEquipEvent>,
@@ -914,22 +877,6 @@ namespace hooks
 		}
 	};
 
-	void SpellCastHook::SetCurrentSpellImpl(RE::ActorMagicCaster *caster, RE::MagicItem *a_spell)
-	{
-		if (auto a_actor = caster->GetCasterAsActor(); a_actor && a_spell && OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_IsinCombat") && caster->currentSpell && (caster->currentSpell->GetSpellType() == RE::MagicSystem::SpellType::kSpell || caster->currentSpell->GetSpellType() == RE::MagicSystem::SpellType::kStaffEnchantment || caster->currentSpell->GetSpellType() == RE::MagicSystem::SpellType::kScroll) && (!OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_Equip_OK") || OnMeleeHitHook::GetIntVariable(a_actor, "iMagicState") == 1))
-		{
-			return;
-		}
-		return func3(caster, a_spell);
-	}
-
-	void SpellCastHook::Install()
-	{
-		logger::info("CurrentSpell Hook Installed");
-		REL::Relocation<uintptr_t> ActorCasterVtbl{RE::VTABLE_ActorMagicCaster[0]};
-
-		SpellCastHook::func3 = ActorCasterVtbl.write_vfunc(0x10, &SpellCastHook::SetCurrentSpellImpl);
-	}
 
 	float OnMeleeHitHook::get_angle_he_me(RE::Actor *me, RE::Actor *he, RE::BGSAttackData *attackdata){
 		auto he_me = PolarAngle(me->GetPosition() - he->GetPosition());
@@ -3009,7 +2956,8 @@ namespace hooks
 							rune->GetProjectileRuntimeData().explosion = nullptr;
 							rune->GetProjectileRuntimeData().avEffect = nullptr;
 							rune->GetProjectileRuntimeData().spell = nullptr;
-							rune->GetProjectileRuntimeData().flags = 1 << 5;
+                            rune->GetProjectileRuntimeData().flags.set(1 << 5);
+                            //= 1 << 5;
 							rune->GetProjectileRuntimeData().transparency = 1000000.0f;
 							rune->GetProjectileRuntimeData().scale = 0.0f;
 							rune->GetProjectileRuntimeData().livingTime = 0.0f;
@@ -3045,8 +2993,8 @@ namespace hooks
 								rune->GetProjectileRuntimeData().explosion = nullptr;
 								rune->GetProjectileRuntimeData().avEffect = nullptr;
 								rune->GetProjectileRuntimeData().spell = nullptr;
-								rune->GetProjectileRuntimeData().flags = 1 << 5;
-								rune->GetProjectileRuntimeData().transparency = 1000000.0f;
+                                rune->GetProjectileRuntimeData().flags.set(1 << 5);
+                                rune->GetProjectileRuntimeData().transparency = 1000000.0f;
 								rune->GetProjectileRuntimeData().scale = 0.0f;
 								rune->GetProjectileRuntimeData().livingTime = 0.0f;
 								rune = nullptr;
@@ -3067,8 +3015,8 @@ namespace hooks
 								rune->GetProjectileRuntimeData().explosion = nullptr;
 								rune->GetProjectileRuntimeData().avEffect = nullptr;
 								rune->GetProjectileRuntimeData().spell = nullptr;
-								rune->GetProjectileRuntimeData().flags = 1 << 5;
-								rune->GetProjectileRuntimeData().transparency = 1000000.0f;
+                                rune->GetProjectileRuntimeData().flags.set(1 << 5);
+                                rune->GetProjectileRuntimeData().transparency = 1000000.0f;
 								rune->GetProjectileRuntimeData().scale = 0.0f;
 								rune->GetProjectileRuntimeData().livingTime = 0.0f;
 								rune = nullptr;
@@ -3104,7 +3052,7 @@ namespace hooks
 			if (combat_target){
 				Rune->GetProjectileRuntimeData().desiredTarget = combat_target;
 			}
-			actor->AsActorValueOwner()->RestoreActorValue(RE::ACTOR_VALUE_MODIFIER::kDamage, RE::ActorValue::kMagicka, -(a_spell->As<RE::MagicItem>()->CalculateMagickaCost(actor)));
+			actor->AsActorValueOwner()->RestoreActorValue(RE::ActorValue::kMagicka, -(a_spell->As<RE::MagicItem>()->CalculateMagickaCost(actor)));
 		}
 	}
 
@@ -3632,32 +3580,6 @@ namespace hooks
 				}
 			}
 		}
-	}
-
-	bool CombatMagic::CheckShouldEquip_Impl(RE::CombatInventoryItemMagic *a_caster, RE::CombatController *a_combatController)
-	{
-		if(const auto a_effect = a_caster && a_combatController? a_caster->effect: nullptr; a_effect){
-            if(const auto a_magicItem = a_caster->GetMagic(); a_magicItem){
-				if (const auto a_actor = a_combatController->actorHandle && a_combatController->actorHandle.get() && a_combatController->actorHandle.get().get() ? a_combatController->actorHandle.get().get() : nullptr; a_actor && !a_actor->IsPlayerRef())
-				{
-					if (a_effect->baseEffect && clib_util::editorID::get_editorID(a_effect->baseEffect).contains("NSV_"))
-					{
-						return false;
-					}
-				}
-			}
-		}
-		
-		return func3(a_caster, a_combatController);
-	}
-
-	void CombatMagic::Install()
-	{
-		REL::Relocation<uintptr_t> CombatMagicVtbl{RE::VTABLE_CombatInventoryItemMagic[0]};
-
-		CombatMagic::func3 = CombatMagicVtbl.write_vfunc(0xF, &CombatMagic::CheckShouldEquip_Impl);
-
-		logger::info("CombatInventItem Installed");
 	}
 
 	void OnMeleeHitHook::Toggle_Casting(RE::Actor *actor, bool a_enable, bool a_lefthand)
@@ -4659,14 +4581,14 @@ namespace hooks
 		}
 	}
 
-	void OnMeleeHitHook::Check_CombatInventory(RE::CombatController *a_controller){
-		if (auto a_invent = a_controller->inventory; a_invent)
+    void OnMeleeHitHook::Check_CombatInventory(RE::Actor* a_actor, RE::CombatController* a_controller) {
+        if (auto a_invent = a_controller->inventory; a_invent)
 		{
 			for (auto invent_item : *a_invent->inventoryItems)
 			{
 				if (invent_item && invent_item.get() && invent_item.get()->item)
 				{
-					logger::info("actor: {} item: {} formID: {} score: {:.2f} equipSlot: {} equipUnsigned: {}", a_controller->actorHandle.get().get()->GetName(), invent_item.get()->item->GetName(), invent_item.get()->item->formID, invent_item.get()->itemScore, clib_util::editorID::get_editorID(invent_item.get()->itemSlot.equipSlot), invent_item.get()->itemSlot.slot);
+					logger::info("actor: {} item: {} formID: {} score: {:.2f} equipSlot: {} equipUnsigned: {}", a_actor->GetName(), invent_item.get()->item->GetName(), invent_item.get()->item->formID, invent_item.get()->itemScore, clib_util::editorID::get_editorID(invent_item.get()->itemSlot.equipSlot), invent_item.get()->itemSlot.slot);
 				}
 			}
 
@@ -4674,7 +4596,7 @@ namespace hooks
 			// {
 			// 	if (equip_item && equip_item.get())
 			// 	{
-			// 		logger::info("actor: {} itemSet1: {} scoreSet1: {:.2f} slotSet1: {} equipSlot1: {} equipUns1: {}", a_controller->actorHandle.get().get()->GetName(), equip_item.get()->item->GetName(), a_invent->unk118.score, a_invent->unk118.slot, clib_util::editorID::get_editorID(equip_item.get()->itemSlot.equipSlot), equip_item.get()->itemSlot.slot);
+			// 		logger::info("actor: {} itemSet1: {} scoreSet1: {:.2f} slotSet1: {} equipSlot1: {} equipUns1: {}", a_actor->GetName(), equip_item.get()->item->GetName(), a_invent->unk118.score, a_invent->unk118.slot, clib_util::editorID::get_editorID(equip_item.get()->itemSlot.equipSlot), equip_item.get()->itemSlot.slot);
 			// 	}
 			// }
 
@@ -4682,13 +4604,13 @@ namespace hooks
 			// {
 			// 	if (equip_item && equip_item.get())
 			// 	{
-			// 		logger::info("actor: {} itemSet2: {} scoreSet2: {:.2f} slotSet2: {} equipSlot2: {} equipUns2: {}", a_controller->actorHandle.get().get()->GetName(), equip_item.get()->item->GetName(), a_invent->unk148.score, a_invent->unk148.slot, clib_util::editorID::get_editorID(equip_item.get()->itemSlot.equipSlot), equip_item.get()->itemSlot.slot);
+			// 		logger::info("actor: {} itemSet2: {} scoreSet2: {:.2f} slotSet2: {} equipSlot2: {} equipUns2: {}", a_actor->GetName(), equip_item.get()->item->GetName(), a_invent->unk148.score, a_invent->unk148.slot, clib_util::editorID::get_editorID(equip_item.get()->itemSlot.equipSlot), equip_item.get()->itemSlot.slot);
 			// 	}
 			// }
 		}
-	}
+    }
 
-	void OnMeleeHitHook::ClearUpdates(RE::Actor *a_actor, bool clearAll)
+    void OnMeleeHitHook::ClearUpdates(RE::Actor *a_actor, bool clearAll)
 	{
 		if (clearAll)
 		{
@@ -4705,71 +4627,40 @@ namespace hooks
 		}
 	}
 
-	class ActorHook
-	{
-	public:
-		static void Install()
-		{
-			// Hook Actor VTable
-			// Index 0xE4: UpdateCombat
-			REL::Relocation<std::uintptr_t> characterVtable{RE::VTABLE_Character[0]};
-			_UpdateCombat = characterVtable.write_vfunc(0xE4, UpdateCombat);
-
-			// SKSE::log::info("Hooked UpdateCombat (VTable[0xE4])");
-		}
-
-	private:
-		static void UpdateCombat(RE::Actor *a_this)
-		{
-			_UpdateCombat(a_this);
-
-			if (!a_this || !IsValidLifeState(a_this))
-			{
-				return;
-			}
-
-			if (!OnMeleeHitHook::GetBoolVariable(a_this, "bNSV_IsinCombat"))
-			{
-				return;
-			}
-
-			OnMeleeHitHook::GetSingleton()->Process_Updates(a_this, std::chrono::steady_clock::now());
-
-			if (OnMeleeHitHook::GetBoolVariable(a_this, "bNSV_IsMage") && !a_this->HasKeywordString("NSV_ModCombatInvent_Exclude"))
-			{
-				if (auto combatcontrol = a_this->GetActorRuntimeData().combatController; combatcontrol)
-				{
-					OnMeleeHitHook::Mod_CombatInventory(a_this, combatcontrol);
-
-					if (a_this->HasKeywordString("NSV_SpellSword") && !OnMeleeHitHook::getrace_VLserana(a_this, false))
-					{
-						OnMeleeHitHook::Mod_CombatInventory_Weapons(a_this, combatcontrol);
-					}
-					else
-					{
-						OnMeleeHitHook::Mod_CombatInventory_Weapons_Reset(a_this, combatcontrol);
-					}
-
-					// Check_CombatInventory(combatcontrol);
-				}
-			}
-		}
-
-		static inline REL::Relocation<decltype(UpdateCombat)> _UpdateCombat;
-	};
-
-	void InstallCombat()
-	{
-		ActorHook::Install();
-	}
 
 	void OnMeleeHitHook::Update(RE::Actor* a_actor, [[maybe_unused]] float a_delta)
 	{
 		if (a_actor->GetActorRuntimeData().currentProcess && a_actor->GetActorRuntimeData().currentProcess->InHighProcess() && a_actor->Is3DLoaded())
 		{
-			if (GetBoolVariable(a_actor, "bNSV_IsinCombat"))
+			if (!a_actor || !IsValidLifeState(a_actor))
 			{
-				// GetSingleton()->Process_Updates(a_actor, std::chrono::steady_clock::now());
+				return;
+			}
+
+			if (!GetBoolVariable(a_actor, "bNSV_IsinCombat"))
+			{
+				return;
+			}
+
+			GetSingleton()->Process_Updates(a_actor, std::chrono::steady_clock::now());
+
+			if (GetBoolVariable(a_actor, "bNSV_IsMage") && !a_actor->HasKeywordString("NSV_ModCombatInvent_Exclude"))
+			{
+				if (auto combatcontrol = a_actor->GetActorRuntimeData().combatController; combatcontrol)
+				{
+					Mod_CombatInventory(a_actor, combatcontrol);
+
+					if (a_actor->HasKeywordString("NSV_SpellSword") && !getrace_VLserana(a_actor, false))
+					{
+						Mod_CombatInventory_Weapons(a_actor, combatcontrol);
+					}
+					else
+					{
+						Mod_CombatInventory_Weapons_Reset(a_actor, combatcontrol);
+					}
+
+					// Check_CombatInventory(combatcontrol);
+				}
 			}
 		}
 	}

@@ -1,14 +1,3 @@
-//#include "PrecisionAPI.h"
-#include "SKSE/Trampoline.h"
-#include <iterator>
-#include <mutex>
-#include <shared_mutex>
-#include <sstream>
-#include <string>
-#include <unordered_set>
-#include <vector>
-#include <thread>
-#include <MinHook.h>
 #pragma warning(disable: 4100)
 #pragma warning(disable : 4189)
 //using std::string;
@@ -57,29 +46,6 @@ namespace hooks
 	bool IsSpellTarget(const RE::Actor *a_actor, const RE::SpellItem *a_spell, float a_comparison_value);
 	bool IsUndead(const RE::Actor *a_actor, float a_comparison_value);
 	bool IsValidLifeState(RE::Actor *a_actor, bool checkDeath = false);
-	void InstallCombat();
-
-	void install_postload();
-
-	struct SpellCastHook
-	{
-	public:
-		static void SetCurrentSpellImpl(RE::ActorMagicCaster *caster, RE::MagicItem *a_spell);
-
-		static inline REL::Relocation<decltype(SetCurrentSpellImpl)> func3;
-
-		static void Install();
-	};
-
-	struct CombatMagic
-	{
-	public:
-		static bool CheckShouldEquip_Impl(RE::CombatInventoryItemMagic *a_caster, RE::CombatController *a_combatController);
-
-		static inline REL::Relocation<decltype(CheckShouldEquip_Impl)> func3;
-
-		static void Install();
-	};
 
 	// void incrementLastFormID()
 	// {
@@ -261,8 +227,8 @@ namespace hooks
 		static void Mod_CombatInventory_VaryScores(RE::Actor *a_actor, RE::CombatController *a_controller);
 		static void Mod_CombatInventory_Weapons(RE::Actor *a_actor, RE::CombatController *a_controller);
 		static void Mod_CombatInventory_Weapons_Reset(RE::Actor *a_actor, RE::CombatController *a_controller);
-		static void Check_CombatInventory(RE::CombatController *a_controller);
-		static void Vary_AI_Scores(RE::Actor *a_actor, bool combat_start = false);
+        static void Check_CombatInventory(RE::Actor* a_actor, RE::CombatController* a_controller);
+        static void Vary_AI_Scores(RE::Actor *a_actor, bool combat_start = false);
 		static std::string GetTargetVariable(RE::SpellItem *a_spell);
 		void ClearUpdates(RE::Actor *a_actor, bool clearAll = false);
 		static bool GetEquipped(RE::Actor *a_actor, RE::TESForm *item);

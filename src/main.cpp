@@ -38,17 +38,16 @@ void onSKSEInit() {
 void PreLoad() {
     // hooks::CastingHandler::Register();
     // thanks to KoeniglichePM
-    // if (hooks::ShoutEquipManager::registery != nullptr)
-    // {
-    // 	// if the thread is there, then destroy and delete it
-    // 	// if it is joinable and not running it has already finished, but needs to be joined before
-    // 	// it can be destroyed savely
-    // 	hooks::ShoutEquipManager::registery->~thread();
-    // 	delete hooks::ShoutEquipManager::registery;
-    // 	hooks::ShoutEquipManager::registery = nullptr;
-    // }
-    // hooks::ShoutEquipManager::registery = new std::thread(hooks::ShoutEquipManager::Register);
-    // hooks::ShoutEquipManager::registery->detach();
+    if (hooks::SpellEquipManager::registery != nullptr) {
+        // if the thread is there, then destroy and delete it
+        // if it is joinable and not running it has already finished, but needs to be joined before
+        // it can be destroyed savely
+        hooks::SpellEquipManager::registery->~thread();
+        delete hooks::SpellEquipManager::registery;
+        hooks::SpellEquipManager::registery = nullptr;
+    }
+    hooks::SpellEquipManager::registery = new std::thread(hooks::SpellEquipManager::Register);
+    hooks::SpellEquipManager::registery->detach();
 }
 
 void InitializeLog() {

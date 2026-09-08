@@ -14,6 +14,18 @@
 #include <spdlog/sinks/msvc_sink.h>
 #include <xbyak/xbyak.h>
 
+// #include "PrecisionAPI.h"
+#include <MinHook.h>
+#include <iterator>
+#include <mutex>
+#include <shared_mutex>
+#include <sstream>
+#include <string>
+#include <thread>
+#include <unordered_set>
+#include <vector>
+#include "SKSE/Trampoline.h"
+
 #define DLLEXPORT __declspec(dllexport)
 
 namespace logger = SKSE::log;
