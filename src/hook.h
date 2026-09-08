@@ -1,6 +1,5 @@
 //#include "PrecisionAPI.h"
 #include "SKSE/Trampoline.h"
-#include <SimpleIni.h>
 #include <iterator>
 #include <mutex>
 #include <shared_mutex>
@@ -10,7 +9,6 @@
 #include <vector>
 #include <thread>
 #include <MinHook.h>
-#include "ClibUtil/editorID.hpp"
 #pragma warning(disable: 4100)
 #pragma warning(disable : 4189)
 //using std::string;

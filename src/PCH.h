@@ -33,11 +33,11 @@ namespace stl {
         template<typename T>
         concept is_duration = is_chrono_duration<T>::value;
 
-        [[nodiscard]] inline bool initialize_sound(RE::BSSoundHandle& a_handle, const std::string& a_editorID) {
-            const auto man = RE::BSAudioManager::GetSingleton();
-            man->BuildSoundDataFromEditorID(a_handle, a_editorID.c_str(), 16);
-            return a_handle.IsValid();
-        }
+        // [[nodiscard]] inline bool initialize_sound(RE::BSSoundHandle& a_handle, const std::string& a_editorID) {
+        //     const auto man = RE::BSAudioManager::GetSingleton();
+        //     man->BuildSoundDataFromEditorID(a_handle, a_editorID.c_str(), 16);
+        //     return a_handle.IsValid();
+        // }
     }
 
     template<typename T, std::size_t Size = 5>
@@ -97,27 +97,6 @@ namespace stl {
                 SKSE::GetTaskInterface()->AddTask(a_fn);
             }
         }.detach();
-    }
-
-    inline bool play_sound(
-        const RE::Actor* a_actor,
-        const std::string& a_editorID,
-        const float a_volume = 1.f
-    ) {
-        RE::BSSoundHandle handle;
-        handle.soundID = static_cast<uint32_t>(-1);
-        handle.assumeSuccess = false;
-        *reinterpret_cast<uint32_t*>(&handle.state) = 0;
-
-        if (detail::initialize_sound(handle, a_editorID) && handle.SetPosition(a_actor->GetPosition())) {
-            handle.SetVolume(a_volume);
-            if (a_actor->Get3D()) {
-                handle.SetObjectToFollow(a_actor->Get3D());
-            }
-            handle.Play();
-        }
-
-        return handle.IsPlaying();
     }
 }
 
