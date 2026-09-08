@@ -204,8 +204,8 @@ namespace hooks
 
 		if (id != 0)
 		{
-			espFound = true;
-		}
+            spellcopies.espFound = true;
+        }
 
 		if (const auto spell_copies_list = dataHandler->LookupForm<RE::BGSListForm>(0x800, "NSV Spell Copies.esp"); spell_copies_list)
 		{
@@ -230,13 +230,10 @@ namespace hooks
 			}
 		}
 
-		
+        spellcopies.firstFormId = id + 1;
+        spellcopies.lastFormId = spellcopies.firstFormId;
 
-		firstFormId = id + 1;
-		lastFormId = firstFormId;
-
-
-		for (auto indv_spell : spellList) {
+        for (auto indv_spell : spellList) {
 			if (indv_spell) {
 				for (auto indv_effect : indv_spell->effects) {
 					if (indv_effect && indv_effect->baseEffect) {
@@ -1187,12 +1184,11 @@ namespace hooks
 
 	void OnMeleeHitHook::Clone_Spell(RE::SpellItem *e_spell)
 	{
-		if(!espFound){
-			return;
-		}
+        if (!spellcopies.espFound) {
+            return;
+        }
 
-
-		if (e_spell->fullName.empty() || !e_spell->equipSlot)
+        if (e_spell->fullName.empty() || !e_spell->equipSlot)
 		{
 			return;
 		}
@@ -1221,15 +1217,14 @@ namespace hooks
 			{
 				if (const auto &form_copy = factory->Create(); form_copy)
 				{
-					if (const auto &exist_form = RE::TESForm::LookupByID(lastFormId); exist_form)
-					{
-						logger::info("exsting form found. Name: {} ID: {} EDID: {}", exist_form->GetName(), exist_form->formID, clib_util::editorID::get_editorID(exist_form));
-					}
+                    if (const auto& exist_form = RE::TESForm::LookupByID(spellcopies.lastFormId); exist_form) {
+                        logger::info("exsting form found. Name: {} ID: {} EDID: {}", exist_form->GetName(), exist_form->formID, clib_util::editorID::get_editorID(exist_form));
+                    }
 
-					form_copy->SetFormID(lastFormId, false);
-					++lastFormId;
+                    form_copy->SetFormID(spellcopies.lastFormId, false);
+                    ++spellcopies.lastFormId;
 
-					form_copy->Copy(e_spell);
+                    form_copy->Copy(e_spell);
 
 					if (const auto &spell_copy = form_copy->As<RE::SpellItem>(); form_copy)
 					{

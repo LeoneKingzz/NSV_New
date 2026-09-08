@@ -3,11 +3,6 @@
 //using std::string;
 static float& g_deltaTime = (*(float*)RELOCATION_ID(523660, 410199).address());
 
-bool espFound = false;
-//bool IsVR = REL::Module::IsVR();
-uint32_t lastFormId = 0;  // last mod
-uint32_t firstFormId = 0; // last mod
-
 namespace hooks
 {
 	// static float& g_deltaTime = (*(float*)RELOCATION_ID(523660, 410199).address());
@@ -47,7 +42,15 @@ namespace hooks
 	bool IsUndead(const RE::Actor *a_actor, float a_comparison_value);
 	bool IsValidLifeState(RE::Actor *a_actor, bool checkDeath = false);
 
-	// void incrementLastFormID()
+    struct SpellCopies {
+        bool espFound = false;
+        // bool IsVR = REL::Module::IsVR();
+        uint32_t lastFormId = 0;  // last mod
+        uint32_t firstFormId = 0; // last mod
+
+    } spellcopies;
+
+    // void incrementLastFormID()
 	// {
 	// 	++lastFormId;
 	// }
