@@ -23,7 +23,7 @@ void MessageHandler(SKSE::MessagingInterface::Message *a_msg)
 }
 
 void Init() {
-    hooks::OnMeleeHitHook::install_pluginListener();
+    // hooks::OnMeleeHitHook::install_pluginListener();
     auto messaging = SKSE::GetMessagingInterface();
     messaging->RegisterListener("SKSE", MessageHandler);
 }
