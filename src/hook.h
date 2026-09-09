@@ -42,13 +42,7 @@ namespace hooks
 	bool IsUndead(const RE::Actor *a_actor, float a_comparison_value);
 	bool IsValidLifeState(RE::Actor *a_actor, bool checkDeath = false);
 
-    struct SpellCopies {
-        bool espFound = false;
-        // bool IsVR = REL::Module::IsVR();
-        uint32_t lastFormId = 0;  // last mod
-        uint32_t firstFormId = 0; // last mod
-
-    } spellcopies;
+    
 
     // void incrementLastFormID()
 	// {
@@ -148,8 +142,16 @@ namespace hooks
 		static void install_protected(){
 			Install_Update();
 		}
-		
-		// void init();
+
+        struct SpellCopies {
+            bool espFound = false;
+            // bool IsVR = REL::Module::IsVR();
+            uint32_t lastFormId = 0;  // last mod
+            uint32_t firstFormId = 0; // last mod
+
+        } spellcopies;
+
+        // void init();
 
 		static bool BindPapyrusFunctions(VM* vm);
 		static void Set_iFrames(RE::Actor* actor);
