@@ -1189,9 +1189,9 @@ namespace hooks
 	{
         auto H = RE::TESDataHandler::GetSingleton();
 
-        if (auto id = H->LookupFormID(0x800, "NSV Spell Copies.esp"); id == 0) {
-            return;
-        }
+        // if (auto id = H->LookupFormID(0x800, "NSV Spell Copies.esp"); id == 0) {
+        //     return;
+        // }
 
         if (e_spell->fullName.empty() || !e_spell->equipSlot)
 		{
