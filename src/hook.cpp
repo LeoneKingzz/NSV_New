@@ -896,7 +896,6 @@ namespace hooks
 	{
 		a_actor->SetGraphVariableBool("bNSV_IsScanning_SpellList", true);
 		//const auto MagicWard = RE::TESForm::LookupByEditorID<RE::BGSKeyword>("MagicWard");
-        logger::info("scanning valid caster");
 
         auto H = RE::TESDataHandler::GetSingleton();
 		if (const auto spell_copies_list = H->LookupForm<RE::BGSListForm>(0x800, "NSV Spell Copies.esp"))
@@ -954,7 +953,7 @@ namespace hooks
 															if (!a_actor->HasSpell(s_spell))
 															{
 																a_actor->AddSpell(s_spell);
-																logger::info("N: {} adding spell: {}", a_actor->GetName(), s_spell->fullName);
+																logger::info("N: {} adding spell: {}"sv, a_actor->GetName(), s_spell->fullName);
 															}
 														}
 													}else{
@@ -967,7 +966,7 @@ namespace hooks
 																if (!a_actor->HasSpell(s_spell))
 																{
 																	a_actor->AddSpell(s_spell);
-																	logger::info("N: {} adding spell: {}", a_actor->GetName(), s_spell->fullName);
+																	logger::info("N: {} adding spell: {}"sv, a_actor->GetName(), s_spell->fullName);
 																}
 															}
 															else
@@ -976,7 +975,7 @@ namespace hooks
 																if (a_actor->HasSpell(s_spell))
 																{
 																	a_actor->RemoveSpell(s_spell);
-																	logger::info("N: {} removing spell: {}", a_actor->GetName(), s_spell->fullName);
+																	logger::info("N: {} removing spell: {}"sv, a_actor->GetName(), s_spell->fullName);
 																}
 															}
 														}
@@ -989,7 +988,7 @@ namespace hooks
 													if (!a_actor->HasSpell(s_spell))
 													{
 														a_actor->AddSpell(s_spell);
-														logger::info("N: {} adding spell: {}", a_actor->GetName(), s_spell->fullName);
+														logger::info("N: {} adding spell: {}"sv, a_actor->GetName(), s_spell->fullName);
 													}
 												}
 												else
@@ -998,7 +997,7 @@ namespace hooks
 													if (a_actor->HasSpell(s_spell))
 													{
 														a_actor->RemoveSpell(s_spell);
-														logger::info("N: {} removing spell: {}", a_actor->GetName(), s_spell->fullName);
+														logger::info("N: {} removing spell: {}"sv, a_actor->GetName(), s_spell->fullName);
 													}
 												}
 											}
@@ -1053,14 +1052,14 @@ namespace hooks
 									if (position == shouldhave_spelllist.end())
 									{
 										a_actor->RemoveSpell(s_spell);
-										logger::info("N: {} removing non-matching spell: {}", a_actor->GetName(), s_spell->fullName);
+										logger::info("N: {} removing non-matching spell: {}"sv, a_actor->GetName(), s_spell->fullName);
 									}
 									else
 									{
 										if (!s_spell->HasKeywordInList(clone_key_list, false))
 										{
 											a_actor->RemoveSpell(s_spell);
-											logger::info("N: {} clone keyword not found removing spell: {}", a_actor->GetName(), s_spell->fullName);
+											logger::info("N: {} clone keyword not found removing spell: {}"sv, a_actor->GetName(), s_spell->fullName);
 										}
 									}
 								}
@@ -1189,10 +1188,6 @@ namespace hooks
 	{
         auto H = RE::TESDataHandler::GetSingleton();
 
-        // if (auto id = H->LookupFormID(0x800, "NSV Spell Copies.esp"); id == 0) {
-        //     return;
-        // }
-
         if (e_spell->fullName.empty() || !e_spell->equipSlot)
 		{
 			return;
@@ -1222,7 +1217,7 @@ namespace hooks
 				if (const auto &form_copy = factory->Create(); form_copy)
 				{
                     if (const auto& exist_form = RE::TESForm::LookupByID(lastFormId); exist_form) {
-                        logger::info("exsting form found. Name: {} ID: {} EDID: {}", exist_form->GetName(), exist_form->formID, clib_util::editorID::get_editorID(exist_form));
+                        logger::info("exsting form found. Name: {} ID: {} EDID: {}"sv, exist_form->GetName(), exist_form->formID, clib_util::editorID::get_editorID(exist_form));
                     }
 
                     form_copy->SetFormID(lastFormId, false);
@@ -1254,7 +1249,6 @@ namespace hooks
 
 						spell_copies_list->AddForm(spell_copy);
 						logger::info("New clone: {} ID: {} EDID: {}"sv, spell_copy->GetName(), spell_copy->formID, clib_util::editorID::get_editorID(spell_copy));
-                        logger::info("new spell cloned");
                     }
 				}
 			}
@@ -3354,7 +3348,7 @@ namespace hooks
 					{
 						if (auto a_spell = eSpell->As<RE::SpellItem>(); a_spell)
 						{
-							// logger::info("Lefthand Branch. {} began casting {}. FormID: {} EDID: {}", a_actor->GetName(), a_spell->GetName(), a_spell->formID, clib_util::editorID::get_editorID(a_spell));
+							// logger::info("Lefthand Branch. {} began casting {}. FormID: {} EDID: {}"sv, a_actor->GetName(), a_spell->GetName(), a_spell->formID, clib_util::editorID::get_editorID(a_spell));
 							
 							switch (a_spell->GetCastingType())
 							{
@@ -3468,7 +3462,7 @@ namespace hooks
 					{
 						if (auto a_spell = eSpell->As<RE::SpellItem>(); a_spell)
 						{
-							// logger::info("Righthand Branch. {} began casting {}. FormID: {} EDID: {}", a_actor->GetName(), a_spell->GetName(), a_spell->formID, clib_util::editorID::get_editorID(a_spell));
+							// logger::info("Righthand Branch. {} began casting {}. FormID: {} EDID: {}"sv, a_actor->GetName(), a_spell->GetName(), a_spell->formID, clib_util::editorID::get_editorID(a_spell));
 
 							switch (a_spell->GetCastingType())
 							{
@@ -3696,7 +3690,7 @@ namespace hooks
 						{
 							if (Effect->baseEffect->HasKeyword(S_key))
 							{
-								// logger::info("Heal Branch. Interrupting cast of {} for {}", a_spell->GetName(), a_actor->GetName());
+								// logger::info("Heal Branch. Interrupting cast of {} for {}"sv, a_spell->GetName(), a_actor->GetName());
 								Vary_AI_Scores(a_actor);
 								InterruptCast(a_caster, false);
 								// RE::ActorEquipManager::GetSingleton()->UnequipObject(a_actor, a_spell);
@@ -3721,7 +3715,7 @@ namespace hooks
 						{
 							if (Effect->baseEffect->HasKeyword(S_key))
 							{
-								// logger::info("Heal Branch. Interrupting cast of {} for {}", a_spell->GetName(), a_actor->GetName());
+								// logger::info("Heal Branch. Interrupting cast of {} for {}"sv, a_spell->GetName(), a_actor->GetName());
 								Vary_AI_Scores(a_actor);
 								InterruptCast(a_caster, false);
 								// RE::ActorEquipManager::GetSingleton()->UnequipObject(a_actor, a_spell);
@@ -3744,7 +3738,7 @@ namespace hooks
 
 				if (a_spell->hostileCount <= 0)
 				{
-					// logger::info("Non Hostile Branch. Interrupting cast of {} for {}", rSpell->GetName(), a_actor->GetName());
+					// logger::info("Non Hostile Branch. Interrupting cast of {} for {}"sv, rSpell->GetName(), a_actor->GetName());
 					Vary_AI_Scores(a_actor);
 					InterruptCast(a_caster, false);
 					// RE::ActorEquipManager::GetSingleton()->UnequipObject(a_actor, rSpell);
@@ -3756,7 +3750,7 @@ namespace hooks
 
 				if (a_spell->hostileCount <= 1)
 				{
-					// logger::info("Non Hostile Branch. Interrupting cast of {} for {}", rSpell->GetName(), a_actor->GetName());
+					// logger::info("Non Hostile Branch. Interrupting cast of {} for {}"sv, rSpell->GetName(), a_actor->GetName());
 					Vary_AI_Scores(a_actor);
 					InterruptCast(a_caster, false);
 					// RE::ActorEquipManager::GetSingleton()->UnequipObject(a_actor, rSpell);
@@ -4594,7 +4588,7 @@ namespace hooks
 			// {
 			// 	if (equip_item && equip_item.get())
 			// 	{
-			// 		logger::info("actor: {} itemSet1: {} scoreSet1: {:.2f} slotSet1: {} equipSlot1: {} equipUns1: {}", a_actor->GetName(), equip_item.get()->item->GetName(), a_invent->unk118.score, a_invent->unk118.slot, clib_util::editorID::get_editorID(equip_item.get()->itemSlot.equipSlot), equip_item.get()->itemSlot.slot);
+			// 		logger::info("actor: {} itemSet1: {} scoreSet1: {:.2f} slotSet1: {} equipSlot1: {} equipUns1: {}"sv, a_actor->GetName(), equip_item.get()->item->GetName(), a_invent->unk118.score, a_invent->unk118.slot, clib_util::editorID::get_editorID(equip_item.get()->itemSlot.equipSlot), equip_item.get()->itemSlot.slot);
 			// 	}
 			// }
 
@@ -4602,7 +4596,7 @@ namespace hooks
 			// {
 			// 	if (equip_item && equip_item.get())
 			// 	{
-			// 		logger::info("actor: {} itemSet2: {} scoreSet2: {:.2f} slotSet2: {} equipSlot2: {} equipUns2: {}", a_actor->GetName(), equip_item.get()->item->GetName(), a_invent->unk148.score, a_invent->unk148.slot, clib_util::editorID::get_editorID(equip_item.get()->itemSlot.equipSlot), equip_item.get()->itemSlot.slot);
+			// 		logger::info("actor: {} itemSet2: {} scoreSet2: {:.2f} slotSet2: {} equipSlot2: {} equipUns2: {}"sv, a_actor->GetName(), equip_item.get()->item->GetName(), a_invent->unk148.score, a_invent->unk148.slot, clib_util::editorID::get_editorID(equip_item.get()->itemSlot.equipSlot), equip_item.get()->itemSlot.slot);
 			// 	}
 			// }
 		}
@@ -7851,7 +7845,7 @@ namespace hooks
 // 	RE::BSFixedString spellname = inv_spell->fullName;
 // 	if (!spellname.empty())
 // 	{
-// 		//logger::info("Name {} Spellfullname {}", a_actor->GetName(), spellname);
+// 		//logger::info("Name {} Spellfullname {}"sv, a_actor->GetName(), spellname);
 // 		bool added = false;
 // 		switch (hash(spellname.c_str(), spellname.size()))
 // 		{
@@ -8205,7 +8199,7 @@ namespace hooks
 // 		}
 
 // 		if(added){
-// 			logger::info("Name {} addedSpell {}", a_actor->GetName(), spellname);
+// 			logger::info("Name {} addedSpell {}"sv, a_actor->GetName(), spellname);
 // 		}
 // 	}
 // }
@@ -8308,7 +8302,7 @@ namespace hooks
 // {
 // 	if (equip_item && equip_item.get())
 // 	{
-// 		logger::info("actor: {} itemSet1: {} scoreSet1: {:.2f} slotSet1: {} equipSlot1: {} equipUns1: {}", a_controller->actorHandle.get().get()->GetName(), equip_item.get()->item->GetName(), a_invent->unk118.score, a_invent->unk118.slot, clib_util::editorID::get_editorID(equip_item.get()->itemSlot.equipSlot), equip_item.get()->itemSlot.slot);
+// 		logger::info("actor: {} itemSet1: {} scoreSet1: {:.2f} slotSet1: {} equipSlot1: {} equipUns1: {}"sv, a_controller->actorHandle.get().get()->GetName(), equip_item.get()->item->GetName(), a_invent->unk118.score, a_invent->unk118.slot, clib_util::editorID::get_editorID(equip_item.get()->itemSlot.equipSlot), equip_item.get()->itemSlot.slot);
 // 	}
 // }
 
@@ -8316,7 +8310,7 @@ namespace hooks
 // {
 // 	if (equip_item && equip_item.get())
 // 	{
-// 		logger::info("actor: {} itemSet2: {} scoreSet2: {:.2f} slotSet2: {} equipSlot2: {} equipUns2: {}", a_controller->actorHandle.get().get()->GetName(), equip_item.get()->item->GetName(), a_invent->unk148.score, a_invent->unk148.slot, clib_util::editorID::get_editorID(equip_item.get()->itemSlot.equipSlot), equip_item.get()->itemSlot.slot);
+// 		logger::info("actor: {} itemSet2: {} scoreSet2: {:.2f} slotSet2: {} equipSlot2: {} equipUns2: {}"sv, a_controller->actorHandle.get().get()->GetName(), equip_item.get()->item->GetName(), a_invent->unk148.score, a_invent->unk148.slot, clib_util::editorID::get_editorID(equip_item.get()->itemSlot.equipSlot), equip_item.get()->itemSlot.slot);
 // 	}
 // }
 
@@ -8326,14 +8320,14 @@ namespace hooks
 // if (position == shouldhave_spelllist.end())
 // {
 // 	a_actor->RemoveSpell(s_spell);
-// 	logger::info("N: {} removing non-matching spell: {}", a_actor->GetName(), s_spell->fullName);
+// 	logger::info("N: {} removing non-matching spell: {}"sv, a_actor->GetName(), s_spell->fullName);
 // }
 // else
 // {
 // 	if (!s_spell->HasKeywordInList(clone_key_list, false))
 // 	{
 // 		a_actor->RemoveSpell(s_spell);
-// 		logger::info("N: {} clone keyword not found removing spell: {}", a_actor->GetName(), s_spell->fullName);
+// 		logger::info("N: {} clone keyword not found removing spell: {}"sv, a_actor->GetName(), s_spell->fullName);
 // 	}
 // }
 
@@ -8422,7 +8416,7 @@ namespace hooks
 // 	for (const auto &form : spell_copies_list->forms)
 // 	{
 // 		if(form){
-// 			logger::info("existing form found. EDID: {} Name: {}", clib_util::editorID::get_editorID(form), form->GetName());
+// 			logger::info("existing form found. EDID: {} Name: {}"sv, clib_util::editorID::get_editorID(form), form->GetName());
 // 		}
 // 	}
 // }
@@ -8435,7 +8429,7 @@ namespace hooks
 
 // 	auto firstid = static_cast<int>(id);
 
-// 	logger::info("firstID: {}", firstid);
+// 	logger::info("firstID: {}"sv, firstid);
 
 // 	auto val = firstid += 16775168;
 
@@ -8451,8 +8445,8 @@ namespace hooks
 // 			continue;
 // 		}
 
-// 		//logger::info("existing form found. ID: {}", static_cast<int>(form->formID));
-// 		logger::info("existing form found. EDID: {} Name: {}", clib_util::editorID::get_editorID(form), form->GetName());
+// 		//logger::info("existing form found. ID: {}"sv, static_cast<int>(form->formID));
+// 		logger::info("existing form found. EDID: {} Name: {}"sv, clib_util::editorID::get_editorID(form), form->GetName());
 // 	}
 // }
 
@@ -8608,8 +8602,8 @@ namespace hooks
 // }
 
 // OnMeleeHitHook::GetEquipped(a_actor, a_spell)
-// logger::info("actor: {} RefCount: {}", a_controller->actorHandle.get().get()->GetName(), static_cast<int>(position1.get()->GetRefCount()));
-// logger::info("actor: {} unk1C: {} item: {}", a_controller->actorHandle.get().get()->GetName(), position2.get()->unk1C, position2.get()->item->GetName());
+// logger::info("actor: {} RefCount: {}"sv, a_controller->actorHandle.get().get()->GetName(), static_cast<int>(position1.get()->GetRefCount()));
+// logger::info("actor: {} unk1C: {} item: {}"sv, a_controller->actorHandle.get().get()->GetName(), position2.get()->unk1C, position2.get()->item->GetName());
 // position2.get()->item = nullptr;
 
 // if (shouldEquip)
