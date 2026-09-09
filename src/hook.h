@@ -143,14 +143,6 @@ namespace hooks
 			Install_Update();
 		}
 
-        struct SpellCopies {
-            bool espFound = false;
-            // bool IsVR = REL::Module::IsVR();
-            uint32_t lastFormId = 0;  // last mod
-            uint32_t firstFormId = 0; // last mod
-
-        } spellcopies;
-
         // void init();
 
 		static bool BindPapyrusFunctions(VM* vm);
@@ -176,15 +168,15 @@ namespace hooks
 		double GenerateRandomDouble(double value_a, double value_b);
 		static bool IsMeleeOnly(RE::Actor *a_actor);
 		void Patch_Spell_List();
-		static std::pair<bool, RE::EffectSetting *> GetEffect_FF_Aimed(RE::SpellItem *a_spell);
-		static std::pair<bool, RE::EffectSetting *> GetEffect_FF_TA(RE::SpellItem *a_spell);
-		static std::pair<bool, RE::EffectSetting *> GetEffect_FF_Self(RE::SpellItem *a_spell);
-		static std::pair<bool, RE::EffectSetting *> GetEffect_CC_TA(RE::SpellItem *a_spell);
-		static std::pair<bool, RE::EffectSetting *> GetEffect_CC_Aimed(RE::SpellItem *a_spell);
-		static std::pair<bool, RE::EffectSetting *> GetEffect_CC_Self(RE::SpellItem *a_spell);
-		static std::pair<bool, RE::EffectSetting *> GetEffect_FF_TL(RE::SpellItem *a_spell);
-		static std::pair<bool, RE::EffectSetting *> GetEffect_CC_TL(RE::SpellItem *a_spell);
-		static bool HasSpellEquipped(RE::Actor *a_actor, bool lefthand);
+        static std::pair<bool, RE::EffectSetting*> GetEffect_FF_Aimed(RE::SpellItem* a_spell, uint32_t &lastFormId);
+        static std::pair<bool, RE::EffectSetting*> GetEffect_FF_TA(RE::SpellItem* a_spell, uint32_t &lastFormId);
+        static std::pair<bool, RE::EffectSetting*> GetEffect_FF_Self(RE::SpellItem* a_spell, uint32_t &lastFormId);
+        static std::pair<bool, RE::EffectSetting*> GetEffect_CC_TA(RE::SpellItem* a_spell, uint32_t &lastFormId);
+        static std::pair<bool, RE::EffectSetting*> GetEffect_CC_Aimed(RE::SpellItem* a_spell, uint32_t &lastFormId);
+        static std::pair<bool, RE::EffectSetting*> GetEffect_CC_Self(RE::SpellItem* a_spell, uint32_t &lastFormId);
+        static std::pair<bool, RE::EffectSetting*> GetEffect_FF_TL(RE::SpellItem* a_spell, uint32_t &lastFormId);
+        static std::pair<bool, RE::EffectSetting*> GetEffect_CC_TL(RE::SpellItem* a_spell, uint32_t &lastFormId);
+        static bool HasSpellEquipped(RE::Actor *a_actor, bool lefthand);
 		static bool HasWeaponEquipped(RE::Actor *a_actor, bool lefthand);
 		static void Execute_Cast(RE::Actor *a_actor, RE::SpellItem *a_spell, bool lefthand, bool FF_aimed = false, bool FF_TA = false, bool FF_TL = false, bool CC_aimed = false, bool CC_TA = false, bool CC_TL = false, bool CC_Self = false);
 		static void GetAttackSpell(RE::Actor *a_actor, bool lefthand = false);
@@ -194,8 +186,8 @@ namespace hooks
 		static void Toggle_Casting(RE::Actor *actor, bool a_enable, bool a_lefthand = false);
 		static void Toggle_Casting_LE(RE::Actor *actor, bool a_enable);
 		RE::BGSAttackData *get_attackData(RE::Actor *a);
-		void Clone_Spell(RE::SpellItem *e_spell);
-		void Scan_Valid_Caster(RE::Actor* a_actor);
+        void Clone_Spell(RE::SpellItem* e_spell, uint32_t &lastFormId);
+        void Scan_Valid_Caster(RE::Actor* a_actor);
 		static void Scan_Soul_Gems(RE::Actor *a_actor);
 		static void Scan_Teammates_NeedHealing(RE::Actor *a_actor);
 		static void Scan_Teammates_HasWeapon(RE::Actor *a_actor);

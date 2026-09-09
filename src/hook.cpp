@@ -204,7 +204,7 @@ namespace hooks
 
 		if (id != 0)
 		{
-            spellcopies.espFound = true;
+            // spellcopies.espFound = true;
         }
 
 		if (const auto spell_copies_list = dataHandler->LookupForm<RE::BGSListForm>(0x800, "NSV Spell Copies.esp"); spell_copies_list)
@@ -230,8 +230,11 @@ namespace hooks
 			}
 		}
 
-        spellcopies.firstFormId = id + 1;
-        spellcopies.lastFormId = spellcopies.firstFormId;
+        uint32_t lastFormId = 0;  // last mod
+        uint32_t firstFormId = 0; // last mod
+
+        firstFormId = id + 1;
+        lastFormId = firstFormId;
 
         for (auto indv_spell : spellList) {
 			if (indv_spell) {
@@ -288,19 +291,18 @@ namespace hooks
 				effect->effectItem.area = 0;
 				effect->effectItem.duration = 0;
 				effect->effectItem.magnitude = 0.0f;
-				
 
-				auto check_CC_TA = GetEffect_CC_TA(indv_spell);
-				auto check_CC_TL = GetEffect_CC_TL(indv_spell);
-				auto check_CC_Self = GetEffect_CC_Self(indv_spell);
-				auto check_CC_Aimed = GetEffect_CC_Aimed(indv_spell);
+                auto check_CC_TA = GetEffect_CC_TA(indv_spell, lastFormId);
+                auto check_CC_TL = GetEffect_CC_TL(indv_spell, lastFormId);
+                auto check_CC_Self = GetEffect_CC_Self(indv_spell, lastFormId);
+                auto check_CC_Aimed = GetEffect_CC_Aimed(indv_spell, lastFormId);
 
-				auto check_FF_TA = GetEffect_FF_TA(indv_spell);
-				auto check_FF_TL = GetEffect_FF_TL(indv_spell);
-				auto check_FF_Self = GetEffect_FF_Self(indv_spell);
-				auto check_FF_Aimed = GetEffect_FF_Aimed(indv_spell);
+                auto check_FF_TA = GetEffect_FF_TA(indv_spell, lastFormId);
+                auto check_FF_TL = GetEffect_FF_TL(indv_spell, lastFormId);
+                auto check_FF_Self = GetEffect_FF_Self(indv_spell, lastFormId);
+                auto check_FF_Aimed = GetEffect_FF_Aimed(indv_spell, lastFormId);
 
-				bool unrecognized_spell = false;
+                bool unrecognized_spell = false;
 
 				switch (indv_spell->GetCastingType()) {
 				case RE::MagicSystem::CastingType::kFireAndForget:
@@ -1183,9 +1185,11 @@ namespace hooks
 		}
 	}
 
-	void OnMeleeHitHook::Clone_Spell(RE::SpellItem *e_spell)
+	void OnMeleeHitHook::Clone_Spell(RE::SpellItem *e_spell, uint32_t &lastFormId)
 	{
-        if (!spellcopies.espFound) {
+        auto H = RE::TESDataHandler::GetSingleton();
+
+        if (auto id = H->LookupFormID(0x800, "NSV Spell Copies.esp"); id == 0) {
             return;
         }
 
@@ -1195,7 +1199,6 @@ namespace hooks
 		}
 
 
-		auto H = RE::TESDataHandler::GetSingleton();
 		if (const auto spell_copies_list = H->LookupForm<RE::BGSListForm>(0x800, "NSV Spell Copies.esp"); spell_copies_list)
 		{
 			for (const auto &form : spell_copies_list->forms)
@@ -1218,12 +1221,12 @@ namespace hooks
 			{
 				if (const auto &form_copy = factory->Create(); form_copy)
 				{
-                    if (const auto& exist_form = RE::TESForm::LookupByID(spellcopies.lastFormId); exist_form) {
+                    if (const auto& exist_form = RE::TESForm::LookupByID(lastFormId); exist_form) {
                         logger::info("exsting form found. Name: {} ID: {} EDID: {}", exist_form->GetName(), exist_form->formID, clib_util::editorID::get_editorID(exist_form));
                     }
 
-                    form_copy->SetFormID(spellcopies.lastFormId, false);
-                    ++spellcopies.lastFormId;
+                    form_copy->SetFormID(lastFormId, false);
+                    ++lastFormId;
 
                     form_copy->Copy(e_spell);
 
@@ -3076,8 +3079,7 @@ namespace hooks
 							{
 								if (Effect->baseEffect->HasKeyword(MagicRune))
 								{
-									auto IsCastingDual = false;
-									if ((actor->GetGraphVariableBool("IsCastingDual", IsCastingDual) && IsCastingDual))
+                                    if (GetBoolVariable(actor, "IsCastingDual"))
 									{
 										if (Effect->baseEffect->data.dualCastData && Effect->baseEffect->data.dualCastData->data.pProjectile)
 										{
@@ -3117,8 +3119,7 @@ namespace hooks
 							{
 								if (Effect->baseEffect->HasKeyword(MagicRune))
 								{
-									auto IsCastingDual = false;
-									if ((actor->GetGraphVariableBool("IsCastingDual", IsCastingDual) && IsCastingDual))
+									if (GetBoolVariable(actor, "IsCastingDual"))
 									{
 										if (Effect->baseEffect->data.dualCastData && Effect->baseEffect->data.dualCastData->data.pProjectile)
 										{
@@ -4974,7 +4975,7 @@ namespace hooks
 		//
 	}
 
-	std::pair<bool, RE::EffectSetting *> OnMeleeHitHook::GetEffect_CC_TA(RE::SpellItem *a_spell)
+	std::pair<bool, RE::EffectSetting *> OnMeleeHitHook::GetEffect_CC_TA(RE::SpellItem *a_spell, uint32_t &lastFormId)
 	{
 		RE::EffectSetting *a_effect = nullptr;
 		bool detected_key = false;
@@ -5169,8 +5170,8 @@ namespace hooks
 				}
 				else
 				{
-					GetSingleton()->Clone_Spell(a_spell);
-					switch (GetSingleton()->GenerateRandomInt(1, 5))
+                    GetSingleton()->Clone_Spell(a_spell, lastFormId);
+                    switch (GetSingleton()->GenerateRandomInt(1, 5))
 					{
 					case 1:
 						a_effect = RE::TESForm::LookupByEditorID<RE::EffectSetting>("NSV_TA_CC_AbsorbBase_1");
@@ -5217,8 +5218,8 @@ namespace hooks
 				}
 				else
 				{
-					GetSingleton()->Clone_Spell(a_spell);
-					switch (GetSingleton()->GenerateRandomInt(1, 5))
+                    GetSingleton()->Clone_Spell(a_spell, lastFormId);
+                    switch (GetSingleton()->GenerateRandomInt(1, 5))
 					{
 					case 1:
 						a_effect = RE::TESForm::LookupByEditorID<RE::EffectSetting>("NSV_TA_CC_DamageBase_1");
@@ -5367,7 +5368,7 @@ namespace hooks
 		return {detected_key, a_effect};
 	}
 
-	std::pair<bool, RE::EffectSetting *> OnMeleeHitHook::GetEffect_FF_Aimed(RE::SpellItem *a_spell)
+	std::pair<bool, RE::EffectSetting *> OnMeleeHitHook::GetEffect_FF_Aimed(RE::SpellItem *a_spell, uint32_t &lastFormId)
 	{
 		RE::EffectSetting *a_effect = nullptr;
 		bool detected_key = false;
@@ -5556,8 +5557,8 @@ namespace hooks
 				}
 				else
 				{
-					GetSingleton()->Clone_Spell(a_spell);
-					switch (GetSingleton()->GenerateRandomInt(1, 5))
+                    GetSingleton()->Clone_Spell(a_spell, lastFormId);
+                    switch (GetSingleton()->GenerateRandomInt(1, 5))
 					{
 					case 1:
 						a_effect = RE::TESForm::LookupByEditorID<RE::EffectSetting>("NSV_Aimed_FF_AbsorbBase_1");
@@ -5628,8 +5629,8 @@ namespace hooks
 				}
 				else
 				{
-					GetSingleton()->Clone_Spell(a_spell);
-					switch (GetSingleton()->GenerateRandomInt(1, 5))
+                    GetSingleton()->Clone_Spell(a_spell, lastFormId);
+                    switch (GetSingleton()->GenerateRandomInt(1, 5))
 					{
 					case 1:
 						a_effect = RE::TESForm::LookupByEditorID<RE::EffectSetting>("NSV_Aimed_FF_DamageBase_1");
@@ -5780,7 +5781,7 @@ namespace hooks
 		return {detected_key, a_effect};
 	}
 
-	std::pair<bool, RE::EffectSetting *> OnMeleeHitHook::GetEffect_CC_Aimed(RE::SpellItem *a_spell)
+	std::pair<bool, RE::EffectSetting *> OnMeleeHitHook::GetEffect_CC_Aimed(RE::SpellItem *a_spell, uint32_t &lastFormId)
 	{
 		RE::EffectSetting *a_effect = nullptr;
 		bool detected_key = false;
@@ -5966,8 +5967,8 @@ namespace hooks
 				}
 				else
 				{
-					GetSingleton()->Clone_Spell(a_spell);
-					switch (GetSingleton()->GenerateRandomInt(1, 5))
+                    GetSingleton()->Clone_Spell(a_spell, lastFormId);
+                    switch (GetSingleton()->GenerateRandomInt(1, 5))
 					{
 					case 1:
 						a_effect = RE::TESForm::LookupByEditorID<RE::EffectSetting>("NSV_Aimed_CC_AbsorbBase_1");
@@ -6039,8 +6040,8 @@ namespace hooks
 				}
 				else
 				{
-					GetSingleton()->Clone_Spell(a_spell);
-					switch (GetSingleton()->GenerateRandomInt(1, 5))
+                    GetSingleton()->Clone_Spell(a_spell, lastFormId);
+                    switch (GetSingleton()->GenerateRandomInt(1, 5))
 					{
 					case 1:
 						a_effect = RE::TESForm::LookupByEditorID<RE::EffectSetting>("NSV_Aimed_CC_DamageBase_1");
@@ -6189,7 +6190,7 @@ namespace hooks
 		}
 		return {detected_key, a_effect};
 	}
-	std::pair<bool, RE::EffectSetting *> OnMeleeHitHook::GetEffect_FF_TA(RE::SpellItem *a_spell)
+	std::pair<bool, RE::EffectSetting *> OnMeleeHitHook::GetEffect_FF_TA(RE::SpellItem *a_spell, uint32_t &lastFormId)
 	{
 		RE::EffectSetting *a_effect = nullptr;
 		bool detected_key = false;
@@ -6394,8 +6395,8 @@ namespace hooks
 				}
 				else
 				{
-					GetSingleton()->Clone_Spell(a_spell);
-					switch (GetSingleton()->GenerateRandomInt(1, 5))
+                    GetSingleton()->Clone_Spell(a_spell, lastFormId);
+                    switch (GetSingleton()->GenerateRandomInt(1, 5))
 					{
 					case 1:
 						a_effect = RE::TESForm::LookupByEditorID<RE::EffectSetting>("NSV_TA_FF_AbsorbBase_1");
@@ -6442,8 +6443,8 @@ namespace hooks
 				}
 				else
 				{
-					GetSingleton()->Clone_Spell(a_spell);
-					switch (GetSingleton()->GenerateRandomInt(1, 5))
+                    GetSingleton()->Clone_Spell(a_spell, lastFormId);
+                    switch (GetSingleton()->GenerateRandomInt(1, 5))
 					{
 					case 1:
 						a_effect = RE::TESForm::LookupByEditorID<RE::EffectSetting>("NSV_TA_FF_DamageBase_1");
@@ -6594,7 +6595,8 @@ namespace hooks
 		return {detected_key, a_effect};
 	}
 
-	std::pair<bool, RE::EffectSetting *> hooks::OnMeleeHitHook::GetEffect_FF_Self(RE::SpellItem *a_spell){
+	std::pair<bool, RE::EffectSetting *> hooks::OnMeleeHitHook::GetEffect_FF_Self(RE::SpellItem *a_spell, uint32_t &lastFormId){
+
 		RE::EffectSetting *a_effect = nullptr;
 		bool detected_key = false;
 
@@ -6887,8 +6889,8 @@ namespace hooks
 				}
 				else
 				{
-					GetSingleton()->Clone_Spell(a_spell);
-					switch (GetSingleton()->GenerateRandomInt(1, 5))
+                    GetSingleton()->Clone_Spell(a_spell, lastFormId);
+                    switch (GetSingleton()->GenerateRandomInt(1, 5))
 					{
 					case 1:
 						a_effect = RE::TESForm::LookupByEditorID<RE::EffectSetting>("NSV_Self_FF_AbsorbBase_1");
@@ -6935,8 +6937,8 @@ namespace hooks
 				}
 				else
 				{
-					GetSingleton()->Clone_Spell(a_spell);
-					switch (GetSingleton()->GenerateRandomInt(1, 5))
+                    GetSingleton()->Clone_Spell(a_spell, lastFormId);
+                    switch (GetSingleton()->GenerateRandomInt(1, 5))
 					{
 					case 1:
 						a_effect = RE::TESForm::LookupByEditorID<RE::EffectSetting>("NSV_Self_FF_DamageBase_1");
@@ -7103,7 +7105,8 @@ namespace hooks
 		return {detected_key, a_effect};
 	}
 
-	std::pair<bool, RE::EffectSetting *> hooks::OnMeleeHitHook::GetEffect_CC_Self(RE::SpellItem *a_spell){
+	std::pair<bool, RE::EffectSetting *> hooks::OnMeleeHitHook::GetEffect_CC_Self(RE::SpellItem *a_spell, uint32_t &lastFormId){
+		
 		RE::EffectSetting *a_effect = nullptr;
 		bool detected_key = false;
 
@@ -7393,8 +7396,8 @@ namespace hooks
 				}
 				else
 				{
-					GetSingleton()->Clone_Spell(a_spell);
-					switch (GetSingleton()->GenerateRandomInt(1, 5))
+                    GetSingleton()->Clone_Spell(a_spell, lastFormId);
+                    switch (GetSingleton()->GenerateRandomInt(1, 5))
 					{
 					case 1:
 						a_effect = RE::TESForm::LookupByEditorID<RE::EffectSetting>("NSV_Self_CC_AbsorbBase_1");
@@ -7441,8 +7444,8 @@ namespace hooks
 				}
 				else
 				{
-					GetSingleton()->Clone_Spell(a_spell);
-					switch (GetSingleton()->GenerateRandomInt(1, 5))
+                    GetSingleton()->Clone_Spell(a_spell, lastFormId);
+                    switch (GetSingleton()->GenerateRandomInt(1, 5))
 					{
 					case 1:
 						a_effect = RE::TESForm::LookupByEditorID<RE::EffectSetting>("NSV_Self_CC_DamageBase_1");
@@ -7611,7 +7614,8 @@ namespace hooks
 		return {detected_key, a_effect};
 	}
 
-	std::pair<bool, RE::EffectSetting *> hooks::OnMeleeHitHook::GetEffect_FF_TL(RE::SpellItem *a_spell){
+	std::pair<bool, RE::EffectSetting *> hooks::OnMeleeHitHook::GetEffect_FF_TL(RE::SpellItem *a_spell, uint32_t &lastFormId){
+
 		RE::EffectSetting *a_effect = nullptr;
 		bool detected_key = false;
 
@@ -7690,7 +7694,8 @@ namespace hooks
 		return {detected_key, a_effect};
 	}
 
-	std::pair<bool, RE::EffectSetting *> hooks::OnMeleeHitHook::GetEffect_CC_TL(RE::SpellItem *a_spell){
+	std::pair<bool, RE::EffectSetting *> hooks::OnMeleeHitHook::GetEffect_CC_TL(RE::SpellItem *a_spell, uint32_t &lastFormId){
+
 		RE::EffectSetting *a_effect = nullptr;
 		bool detected_key = false;
 
