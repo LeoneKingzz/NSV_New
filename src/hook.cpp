@@ -1249,7 +1249,7 @@ namespace hooks
 						copyComponent<RE::TESBipedModelForm>(e_spell, spell_copy);
 
 						spell_copies_list->AddForm(spell_copy);
-						// logger::info("New clone: {} ID: {} EDID: {}", spell_copy->GetName(), spell_copy->formID, clib_util::editorID::get_editorID(spell_copy));
+						logger::info("New clone: {} ID: {} EDID: {}", spell_copy->GetName(), spell_copy->formID, clib_util::editorID::get_editorID(spell_copy));
 					}
 				}
 			}
