@@ -894,8 +894,9 @@ namespace hooks
 	{
 		a_actor->SetGraphVariableBool("bNSV_IsScanning_SpellList", true);
 		//const auto MagicWard = RE::TESForm::LookupByEditorID<RE::BGSKeyword>("MagicWard");
+        logger::info("scanning valid caster");
 
-		auto H = RE::TESDataHandler::GetSingleton();
+        auto H = RE::TESDataHandler::GetSingleton();
 		if (const auto spell_copies_list = H->LookupForm<RE::BGSListForm>(0x800, "NSV Spell Copies.esp"))
 		{
 			if (const auto playable_spells_list = H->LookupForm<RE::BGSListForm>(0x98F, "NPC Spell Variance.esp"))
@@ -1250,7 +1251,8 @@ namespace hooks
 
 						spell_copies_list->AddForm(spell_copy);
 						logger::info("New clone: {} ID: {} EDID: {}", spell_copy->GetName(), spell_copy->formID, clib_util::editorID::get_editorID(spell_copy));
-					}
+                        logger::info("new spell cloned");
+                    }
 				}
 			}
 		}
