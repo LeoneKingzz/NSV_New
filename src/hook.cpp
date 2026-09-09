@@ -1253,7 +1253,7 @@ namespace hooks
 						copyComponent<RE::TESBipedModelForm>(e_spell, spell_copy);
 
 						spell_copies_list->AddForm(spell_copy);
-						logger::info("New clone: {} ID: {} EDID: {}", spell_copy->GetName(), spell_copy->formID, clib_util::editorID::get_editorID(spell_copy));
+						logger::info("New clone: {} ID: {} EDID: {}"sv, spell_copy->GetName(), spell_copy->formID, clib_util::editorID::get_editorID(spell_copy));
                         logger::info("new spell cloned");
                     }
 				}
@@ -4586,7 +4586,7 @@ namespace hooks
 			{
 				if (invent_item && invent_item.get() && invent_item.get()->item)
 				{
-					logger::info("actor: {} item: {} formID: {} score: {:.2f} equipSlot: {} equipUnsigned: {}", a_actor->GetName(), invent_item.get()->item->GetName(), invent_item.get()->item->formID, invent_item.get()->itemScore, clib_util::editorID::get_editorID(invent_item.get()->itemSlot.equipSlot), invent_item.get()->itemSlot.slot);
+					logger::info("actor: {} item: {} formID: {} score: {:.2f} equipSlot: {} equipUnsigned: {}"sv, a_actor->GetName(), invent_item.get()->item->GetName(), invent_item.get()->item->formID, invent_item.get()->itemScore, clib_util::editorID::get_editorID(invent_item.get()->itemSlot.equipSlot), invent_item.get()->itemSlot.slot);
 				}
 			}
 
