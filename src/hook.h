@@ -819,7 +819,7 @@ namespace hooks
 		{
 			void Load(CSimpleIniA &a_ini);
 			bool bWhiteListApproach = false;
-			bool bPatchPureDamageSpells = true;
+			bool bDebug = false;
 
 		} general;
 

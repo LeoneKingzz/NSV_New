@@ -953,7 +953,9 @@ namespace hooks
 															if (!a_actor->HasSpell(s_spell))
 															{
 																a_actor->AddSpell(s_spell);
-																logger::info("N: {} adding spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+                                                                if (Settings::GetSingleton()->general.bDebug) {
+																	logger::info("N: {} adding spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+                                                                }
 															}
 														}
 													}else{
@@ -966,7 +968,9 @@ namespace hooks
 																if (!a_actor->HasSpell(s_spell))
 																{
 																	a_actor->AddSpell(s_spell);
-																	logger::info("N: {} adding spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+																	if (Settings::GetSingleton()->general.bDebug) {
+																		logger::info("N: {} adding spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+																	}
 																}
 															}
 															else
@@ -975,7 +979,9 @@ namespace hooks
 																if (a_actor->HasSpell(s_spell))
 																{
 																	a_actor->RemoveSpell(s_spell);
-																	logger::info("N: {} removing spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+																	if (Settings::GetSingleton()->general.bDebug) {
+																		logger::info("N: {} removing spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+																	}
 																}
 															}
 														}
@@ -988,7 +994,9 @@ namespace hooks
 													if (!a_actor->HasSpell(s_spell))
 													{
 														a_actor->AddSpell(s_spell);
-														logger::info("N: {} adding spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+														if (Settings::GetSingleton()->general.bDebug) {
+															logger::info("N: {} adding spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+														}
 													}
 												}
 												else
@@ -997,7 +1005,9 @@ namespace hooks
 													if (a_actor->HasSpell(s_spell))
 													{
 														a_actor->RemoveSpell(s_spell);
-														logger::info("N: {} removing spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+														if (Settings::GetSingleton()->general.bDebug) {
+															logger::info("N: {} removing spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+														}
 													}
 												}
 											}
@@ -1052,14 +1062,18 @@ namespace hooks
 									if (position == shouldhave_spelllist.end())
 									{
 										a_actor->RemoveSpell(s_spell);
-										logger::info("N: {} removing non-matching spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+										if (Settings::GetSingleton()->general.bDebug) {
+											logger::info("N: {} removing non-matching spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+										}
 									}
 									else
 									{
 										if (!s_spell->HasKeywordInList(clone_key_list, false))
 										{
 											a_actor->RemoveSpell(s_spell);
-											logger::info("N: {} clone keyword not found removing spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+											if (Settings::GetSingleton()->general.bDebug) {
+												logger::info("N: {} clone keyword not found removing spell: {}"sv, a_actor->GetName(), s_spell->fullName);
+											}
 										}
 									}
 								}
@@ -1217,7 +1231,9 @@ namespace hooks
 				if (const auto &form_copy = factory->Create(); form_copy)
 				{
                     if (const auto& exist_form = RE::TESForm::LookupByID(lastFormId); exist_form) {
-                        logger::info("exsting form found. Name: {} ID: {} EDID: {}"sv, exist_form->GetName(), exist_form->formID, clib_util::editorID::get_editorID(exist_form));
+						if (Settings::GetSingleton()->general.bDebug) {
+							logger::info("existing form found. Name: {} ID: {} EDID: {}"sv, exist_form->GetName(), exist_form->formID, clib_util::editorID::get_editorID(exist_form));
+						}
                     }
 
                     form_copy->SetFormID(lastFormId, false);
@@ -1248,7 +1264,9 @@ namespace hooks
 						copyComponent<RE::TESBipedModelForm>(e_spell, spell_copy);
 
 						spell_copies_list->AddForm(spell_copy);
-						logger::info("New clone: {} ID: {} EDID: {}"sv, spell_copy->GetName(), spell_copy->formID, clib_util::editorID::get_editorID(spell_copy));
+						if (Settings::GetSingleton()->general.bDebug) {
+							logger::info("New clone: {} ID: {} EDID: {}"sv, spell_copy->GetName(), spell_copy->formID, clib_util::editorID::get_editorID(spell_copy));
+						}
                     }
 				}
 			}
@@ -4892,10 +4910,10 @@ namespace hooks
 		auto DS = GetSingleton();
 
 		DS->general.bWhiteListApproach = a_ini.GetBoolValue(section, "bWhiteListApproach", DS->general.bWhiteListApproach);
-		DS->general.bPatchPureDamageSpells = a_ini.GetBoolValue(section, "bPatchPureDamageSpells", DS->general.bPatchPureDamageSpells);
+		DS->general.bDebug = a_ini.GetBoolValue(section, "bDebug", DS->general.bDebug);
 
 		a_ini.SetBoolValue(section, "bWhiteListApproach", DS->general.bWhiteListApproach, ";If set to true, only the include mods and keywords are considered. Else only the exclude approach is used");
-		a_ini.SetBoolValue(section, "bPatchPureDamageSpells", DS->general.bPatchPureDamageSpells, ";If set to false, pure NSV_Magic_Damage aren't patched which may help prevent strange mage behaviour if you experience them. However, Doing this will lead to less spell variety.");
+		a_ini.SetBoolValue(section, "bDebug", DS->general.bDebug, ";Enables logging for some processes");
 	}
 
 	void Settings::Include_AllSpells_withKeywords::Load(CSimpleIniA &a_ini)
