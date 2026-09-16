@@ -711,7 +711,7 @@ namespace hooks
 				// 	if (OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_Equip_OK"))
 				// 	{
 				// 		a_actor->SetGraphVariableBool("bNSV_Equip_OK", false);
-				// 		OnMeleeHitHook::GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 4000ms, "EquipUnequip_Update"));
+				// 		OnMeleeHitHook::GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 4000ms, "EquipUnequip_Update"));
 				// 	}
 				// }
 			}
@@ -1036,12 +1036,12 @@ namespace hooks
 
 				if (a_actor->HasKeywordString("NSV_SpellSword"))
 				{
-					GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 8000ms, "AIScores_Update"));
+					GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 8000ms, "AIScores_Update"));
 				}
 
 				// if (!a_actor->HasKeywordString("NSV_ModCombatInvent_Exclude"))
 				// {
-				// 	GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "ModCombat_Inventory_Update"));
+				// 	GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "ModCombat_Inventory_Update"));
 				// }
 
 				// Toggle_Casting_LE(a_actor, true);
@@ -2392,7 +2392,7 @@ namespace hooks
 
 						auto required = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<double>(total));
 
-						GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(caster, std::chrono::steady_clock::now(), required, "HealConc_Update"));
+						GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(caster, std::chrono::steady_clock::now(), required, "HealConc_Update"));
 						break;
 					}
 				}
@@ -2413,7 +2413,7 @@ namespace hooks
 
 						auto required = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<double>(num));
 
-						GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(caster, std::chrono::steady_clock::now(), required, "WardConc_Update"));
+						GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(caster, std::chrono::steady_clock::now(), required, "WardConc_Update"));
 						break;
 					}
 				}
@@ -2427,7 +2427,7 @@ namespace hooks
 
 			auto required = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<double>(num));
 
-			GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(caster, std::chrono::steady_clock::now(), required, "GenericConc_Update"));
+			GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(caster, std::chrono::steady_clock::now(), required, "GenericConc_Update"));
 		}
 	}
 
@@ -2757,37 +2757,37 @@ namespace hooks
 					{
 					case "bNSV_Teammate_needcloak"_h:
 						a_actor->SetGraphVariableBool("bNSV_InterruptCast_Cloak", true);
-						GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Cloak_Active_Update"));
+						GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Cloak_Active_Update"));
 						break;
 
 					case "bNSV_Teammate_needarmour"_h:
 						a_actor->SetGraphVariableBool("bNSV_InterruptCast_Armour", true);
-						GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Armour_Active_Update"));
+						GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Armour_Active_Update"));
 						break;
 
 					case "bNSV_Teammate_needhealing"_h:
 						a_actor->SetGraphVariableBool("bNSV_InterruptCast_Heal", true);
-						GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Heal_Active_Update"));
+						GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Heal_Active_Update"));
 						break;
 
 					case "bNSV_Teammate_needinvisibility"_h:
 						a_actor->SetGraphVariableBool("bNSV_InterruptCast_Invisibility", true);
-						GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Invisibility_Active_Update"));
+						GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Invisibility_Active_Update"));
 						break;
 
 					case "bNSV_Team_needBoundWeapon_member"_h:
 						a_actor->SetGraphVariableBool("bNSV_InterruptCast_Summon", true);
-						GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Summon_Active_Update"));
+						GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Summon_Active_Update"));
 						break;
 
 					case "bNSV_Teammate_needward"_h:
 						a_actor->SetGraphVariableBool("bNSV_InterruptCast_Ward", true);
-						GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Ward_Active_Update"));
+						GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Ward_Active_Update"));
 						break;
 
 					case "bNSV_Teammate_needsurvival"_h:
 						a_actor->SetGraphVariableBool("bNSV_InterruptCast_Survive", true);
-						GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Survive_Active_Update"));
+						GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 3000ms, "Survive_Active_Update"));
 						break;
 
 					default:
@@ -3048,7 +3048,7 @@ namespace hooks
 			if (!OnMeleeHitHook::GetBoolVariable(actor, "bNSV_Trap_Cool"))
 			{
 				actor->SetGraphVariableBool("bNSV_Trap_Cool", true);
-				OnMeleeHitHook::GetSingleton()->RegisterforUpdate(actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 10000ms, "TrapCooldown_Update"));
+				OnMeleeHitHook::GetSingleton()->RegisterforUpdate(actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 10000ms, "TrapCooldown_Update"));
 				// if (!OnMeleeHitHook::GetBoolVariable(actor, "bNSV_Equip_OK"))
 				// {
 				// 	actor->SetGraphVariableBool("bNSV_Equip_OK", true);
@@ -3227,7 +3227,7 @@ namespace hooks
 
 										auto required = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<double>(total));
 
-										GetSingleton()->RegisterforUpdate(actor, std::make_tuple(caster, std::chrono::steady_clock::now(), required, "HealConc_Update"));
+										GetSingleton()->RegisterforUpdate(actor, std::forward_as_tuple(caster, std::chrono::steady_clock::now(), required, "HealConc_Update"));
 										break;
 									}
 								}
@@ -3261,7 +3261,7 @@ namespace hooks
 
 										auto required = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<double>(num));
 
-										GetSingleton()->RegisterforUpdate(actor, std::make_tuple(caster, std::chrono::steady_clock::now(), required, "WardConc_Update"));
+										GetSingleton()->RegisterforUpdate(actor, std::forward_as_tuple(caster, std::chrono::steady_clock::now(), required, "WardConc_Update"));
 										break;
 									}
 								}
@@ -3287,7 +3287,7 @@ namespace hooks
 							}
 							auto required = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<double>(num));
 
-							GetSingleton()->RegisterforUpdate(actor, std::make_tuple(caster, std::chrono::steady_clock::now(), required, "GenericConc_Update"));
+							GetSingleton()->RegisterforUpdate(actor, std::forward_as_tuple(caster, std::chrono::steady_clock::now(), required, "GenericConc_Update"));
 						}
 
 						break;
@@ -3303,7 +3303,7 @@ namespace hooks
 						if (!OnMeleeHitHook::GetBoolVariable(actor, "bNSV_Buff_Cool"))
 						{
 							actor->SetGraphVariableBool("bNSV_Buff_Cool", true);
-							OnMeleeHitHook::GetSingleton()->RegisterforUpdate(actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 6000ms, "BuffCooldown_Update"));
+							OnMeleeHitHook::GetSingleton()->RegisterforUpdate(actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 6000ms, "BuffCooldown_Update"));
 							// if (!OnMeleeHitHook::GetBoolVariable(actor, "bNSV_Equip_OK"))
 							// {
 							// 	actor->SetGraphVariableBool("bNSV_Equip_OK", true);
@@ -3315,7 +3315,7 @@ namespace hooks
 						if (!OnMeleeHitHook::GetBoolVariable(actor, "bNSV_DeBuff_Cool"))
 						{
 							actor->SetGraphVariableBool("bNSV_DeBuff_Cool", true);
-							OnMeleeHitHook::GetSingleton()->RegisterforUpdate(actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 6000ms, "DeBuffCooldown_Update"));
+							OnMeleeHitHook::GetSingleton()->RegisterforUpdate(actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 6000ms, "DeBuffCooldown_Update"));
 							// if (!OnMeleeHitHook::GetBoolVariable(actor, "bNSV_Equip_OK"))
 							// {
 							// 	actor->SetGraphVariableBool("bNSV_Equip_OK", true);
@@ -4677,7 +4677,7 @@ namespace hooks
 
 	void OnMeleeHitHook::Process_Updates(RE::Actor *a_actor, std::chrono::steady_clock::time_point time_now)
 	{
-		if (!a_actor || !IsValidLifeState(a_actor)){
+		if (a_actor == nullptr || !IsValidLifeState(a_actor)){
 			return;
 		}
 
@@ -4764,7 +4764,7 @@ namespace hooks
 							if(GetBoolVariable(a_actor, "bNSV_IsInCombat")){
 								Vary_AI_Scores(a_actor);
 
-								GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 8000ms, "AIScores_Update"));
+								GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 8000ms, "AIScores_Update"));
 							}
 
 							break;
@@ -4779,7 +4779,7 @@ namespace hooks
 
 								}else
 								{
-									GetSingleton()->RegisterforUpdate(a_actor, std::make_tuple(nullptr, std::chrono::steady_clock::now(), 2000ms, "ModCombat_Inventory_Update"));
+									GetSingleton()->RegisterforUpdate(a_actor, std::forward_as_tuple(nullptr, std::chrono::steady_clock::now(), 2000ms, "ModCombat_Inventory_Update"));
 								}
 							}
 

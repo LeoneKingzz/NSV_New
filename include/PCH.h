@@ -23,6 +23,7 @@
 #pragma warning(pop)
 
 #define WIN32_LEAN_AND_MEAN
+#undef AddForm
 #include <Windows.h>
 
 #include <ClibUtil/editorID.hpp>
