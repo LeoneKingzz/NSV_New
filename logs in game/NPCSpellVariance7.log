@@ -1,0 +1,561 @@
+[info] Loaded plugin
+[info] Sinking animation event hook for NPC
+[info] Sinking complete.
+[info] recieved KID finished event
+[info] N: Lucien Flavius adding spell: Sparks
+[info] N: Lucien Flavius adding spell: Lightning Bolt
+[info] N: Lucien Flavius adding spell: Ice Spike
+[info] N: Lucien Flavius adding spell: Poisonous Touch
+[info] N: Lucien Flavius adding spell: Dragon's Teeth
+[info] N: Lucien Flavius adding spell: Rift Bolt
+[info] N: Lucien Flavius adding spell: Creeping Cold
+[info] N: Lucien Flavius adding spell: Fracture
+[info] N: Lucien Flavius removing non-matching spell: Ash Form
+[info] N: Lucien Flavius removing non-matching spell: Chilling Touch
+[info] N: Lucien Flavius removing non-matching spell: Blood Lance
+[info] N: Lucien Flavius removing non-matching spell: Vampiric Touch
+[info] N: Lucien Flavius removing non-matching spell: Vampiric Bolt
+[info] N: Lucien Flavius removing non-matching spell: Stormblast
+[info] N: Lucien Flavius removing non-matching spell: Sleet Storm
+[info] N: Lucien Flavius removing non-matching spell: Cyclonic Rift
+[info] N: Lucien Flavius removing non-matching spell: Finger of Death
+[info] N: Lucien Flavius removing non-matching spell: Forbidden Sun
+[info] N: Lucien Flavius removing non-matching spell: Blood Boil
+[info] N: Lucien Flavius removing non-matching spell: Hidden Cobra
+[info] N: Lucien Flavius removing non-matching spell: Howling Blast
+[info] N: Lucien Flavius removing non-matching spell: Life's Finale
+[info] N: Lucien Flavius removing non-matching spell: Incendiary Flow
+[info] N: Lucien Flavius removing non-matching spell: Empathic Agony
+[info] N: Lucien Flavius removing non-matching spell: Harrowing Dirge
+[info] N: Lucien Flavius removing non-matching spell: Vampire - Hemalurgic Spike
+[info] N: Lucien Flavius removing non-matching spell: Lightning Bolt Right
+[info] N: Lucien Flavius removing non-matching spell: Raze
+[info] N: Lucien Flavius removing non-matching spell: Ice Storm Right
+[info] actor: Lucien Flavius item: Oakflesh score: 22400.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Steadfast Ward score: 8540.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Rune score: 8106.40 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunbeam score: 8054.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Wild Healing score: 8044.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fast Healing score: 8039.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frost Rune score: 8018.09 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Bone Spirit score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Healing Hands score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunlight Rune score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Soul Trap score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Heal Other score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Leech Seed score: 2079.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lamb of Mara score: 2000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Inferno score: 2000.00 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Courage score: 2000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Bolt score: 553.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 553.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 546.68 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Firebolt score: 509.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 509.04 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 506.78 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Circle of Strength score: 500.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 309.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Poisonous Touch score: 295.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 281.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 263.30 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 256.82 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frostbite score: 255.43 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 254.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 253.53 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 59.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Lightning Bolt score: 53.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 53.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 46.68 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Poisonous Touch score: 45.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 31.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 13.30 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Firebolt score: 9.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 9.04 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 6.82 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 6.78 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frostbite score: 5.43 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Flames score: 4.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 3.53 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.57 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.56 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item:  score: 0.03 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Oakflesh score: 22400.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Steadfast Ward score: 8540.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Rune score: 8106.40 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunbeam score: 8054.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Wild Healing score: 8044.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fast Healing score: 8039.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frost Rune score: 8018.09 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Bone Spirit score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Healing Hands score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunlight Rune score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Soul Trap score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Heal Other score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Leech Seed score: 2079.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lamb of Mara score: 2000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Inferno score: 2000.00 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Courage score: 2000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Bolt score: 553.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 553.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 546.68 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Firebolt score: 509.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 509.04 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 506.78 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Circle of Strength score: 500.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 309.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Poisonous Touch score: 295.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 281.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 263.30 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 256.82 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frostbite score: 255.43 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 254.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 253.53 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 59.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Lightning Bolt score: 53.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 53.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 46.68 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Poisonous Touch score: 45.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 31.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 13.30 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Firebolt score: 9.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 9.04 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 6.82 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 6.78 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frostbite score: 5.43 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Flames score: 4.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 3.53 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.57 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.56 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item:  score: 0.03 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Oakflesh score: 22400.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Steadfast Ward score: 8540.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Rune score: 8106.40 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunbeam score: 8054.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Wild Healing score: 8044.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fast Healing score: 8039.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frost Rune score: 8013.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Bone Spirit score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Healing Hands score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunlight Rune score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Soul Trap score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Heal Other score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Leech Seed score: 2060.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lamb of Mara score: 2000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Inferno score: 2000.00 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Courage score: 2000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Bolt score: 553.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 553.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 535.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Firebolt score: 509.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 506.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 505.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Circle of Strength score: 500.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 309.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Poisonous Touch score: 295.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 281.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 263.30 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 255.13 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 254.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 254.08 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 253.53 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 59.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Lightning Bolt score: 53.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 53.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Poisonous Touch score: 45.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 35.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 31.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 13.30 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Firebolt score: 9.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 6.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 5.13 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 5.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 4.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 4.08 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 3.53 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.57 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.56 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item:  score: 0.03 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Oakflesh score: 22400.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Steadfast Ward score: 8540.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Rune score: 8106.40 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunbeam score: 8054.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Wild Healing score: 8044.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fast Healing score: 8039.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frost Rune score: 8013.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Bone Spirit score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Healing Hands score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunlight Rune score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Soul Trap score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Heal Other score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Leech Seed score: 2060.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lamb of Mara score: 2000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Inferno score: 2000.00 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Courage score: 2000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Bolt score: 553.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 553.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 535.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Firebolt score: 509.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 506.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 505.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Circle of Strength score: 500.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 309.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Poisonous Touch score: 295.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 281.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 263.30 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 255.13 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 254.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 254.08 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 253.53 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 59.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Lightning Bolt score: 53.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 53.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Poisonous Touch score: 45.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 35.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 31.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 13.30 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Firebolt score: 9.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 6.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 5.13 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 5.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 4.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 4.08 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 3.53 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.57 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.56 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item:  score: 0.03 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Oakflesh score: 22400.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Steadfast Ward score: 8540.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Rune score: 8106.40 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunbeam score: 8054.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Wild Healing score: 8044.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fast Healing score: 8039.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frost Rune score: 8013.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Bone Spirit score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Healing Hands score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunlight Rune score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Soul Trap score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Heal Other score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Leech Seed score: 2060.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lamb of Mara score: 2000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Inferno score: 2000.00 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Courage score: 2000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Bolt score: 553.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 553.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 535.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Firebolt score: 509.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 506.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 505.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Circle of Strength score: 500.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 309.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Poisonous Touch score: 295.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 281.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 263.30 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 255.13 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 254.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 254.08 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 253.53 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 59.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Lightning Bolt score: 53.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 53.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Poisonous Touch score: 45.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 35.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 31.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 13.30 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Firebolt score: 9.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 6.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 5.13 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 5.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 4.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 4.08 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 3.53 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.57 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.56 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item:  score: 0.03 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Oakflesh score: 22400.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Steadfast Ward score: 8540.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Rune score: 8106.40 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunbeam score: 8054.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Wild Healing score: 8044.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fast Healing score: 8039.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frost Rune score: 8013.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Bone Spirit score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Healing Hands score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunlight Rune score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Soul Trap score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Heal Other score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Leech Seed score: 2060.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lamb of Mara score: 2000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Inferno score: 2000.00 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Courage score: 2000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Bolt score: 553.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 553.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 535.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Firebolt score: 509.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 506.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 505.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Circle of Strength score: 500.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 309.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Poisonous Touch score: 295.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 281.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 263.30 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 255.13 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 254.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 254.08 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 253.53 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 59.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Lightning Bolt score: 53.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 53.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Poisonous Touch score: 45.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 35.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 31.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 13.30 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Firebolt score: 9.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 6.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 5.13 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 5.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 4.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 4.08 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 3.53 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.57 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.56 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item:  score: 0.03 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Oakflesh score: 22400.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Steadfast Ward score: 8540.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Rune score: 8106.40 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunbeam score: 8054.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Wild Healing score: 8044.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fast Healing score: 8039.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frost Rune score: 8013.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Bone Spirit score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Healing Hands score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunlight Rune score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Soul Trap score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Heal Other score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Leech Seed score: 2060.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lamb of Mara score: 2000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Inferno score: 2000.00 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Courage score: 2000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Bolt score: 553.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 553.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 535.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Firebolt score: 509.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 506.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 505.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Circle of Strength score: 500.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 309.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Poisonous Touch score: 295.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 281.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 263.30 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 255.13 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 254.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 254.08 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 253.53 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 59.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Lightning Bolt score: 53.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 53.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Poisonous Touch score: 45.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 35.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 31.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 13.30 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Firebolt score: 9.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 6.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 5.13 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 5.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 4.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 4.08 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 3.53 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.57 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.56 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item:  score: 0.03 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Oakflesh score: 22400.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Steadfast Ward score: 8540.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Rune score: 8106.40 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunbeam score: 8054.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Wild Healing score: 8044.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fast Healing score: 8039.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frost Rune score: 8013.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Bone Spirit score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Healing Hands score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunlight Rune score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Soul Trap score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Heal Other score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Leech Seed score: 2060.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lamb of Mara score: 2000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Inferno score: 2000.00 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Courage score: 2000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Bolt score: 553.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 553.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 535.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Firebolt score: 509.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 506.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 505.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Circle of Strength score: 500.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 309.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Poisonous Touch score: 295.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 281.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 263.30 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 255.13 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 254.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 254.08 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 253.53 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 59.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Lightning Bolt score: 53.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 53.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Poisonous Touch score: 45.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 35.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 31.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 13.30 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Firebolt score: 9.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 6.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 5.13 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 5.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 4.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 4.08 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 3.53 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.57 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.56 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item:  score: 0.03 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Oakflesh score: 22400.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Steadfast Ward score: 8540.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Rune score: 8106.40 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunbeam score: 8054.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Wild Healing score: 8044.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fast Healing score: 8039.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frost Rune score: 8013.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Bone Spirit score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Healing Hands score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunlight Rune score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Soul Trap score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Heal Other score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Leech Seed score: 2060.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lamb of Mara score: 2000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Inferno score: 2000.00 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Courage score: 2000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Bolt score: 553.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 553.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 535.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Firebolt score: 509.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 506.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 505.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Circle of Strength score: 500.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 309.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Poisonous Touch score: 295.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 281.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 263.30 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 255.13 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 254.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 254.08 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 253.53 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 59.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Lightning Bolt score: 53.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 53.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Poisonous Touch score: 45.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 35.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 31.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 13.30 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Firebolt score: 9.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 6.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 5.13 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 5.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 4.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 4.08 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 3.53 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.57 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.56 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item:  score: 0.03 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Oakflesh score: 22400.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Steadfast Ward score: 8540.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Rune score: 8106.40 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunbeam score: 8054.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Wild Healing score: 8044.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fast Healing score: 8039.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frost Rune score: 8013.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Bone Spirit score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Healing Hands score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunlight Rune score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Soul Trap score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Heal Other score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Leech Seed score: 2060.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lamb of Mara score: 2000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Inferno score: 2000.00 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Courage score: 2000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Bolt score: 553.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 553.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 535.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Firebolt score: 509.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 506.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 505.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Circle of Strength score: 500.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 309.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Poisonous Touch score: 295.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 281.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 263.30 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 255.13 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 254.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 254.08 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 253.53 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 59.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Lightning Bolt score: 53.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 53.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Poisonous Touch score: 45.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 35.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 31.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 13.30 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Firebolt score: 9.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 6.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 5.13 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 5.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 4.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 4.08 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 3.53 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.57 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.56 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item:  score: 0.03 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Oakflesh score: 22400.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Steadfast Ward score: 8540.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Rune score: 8106.40 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunbeam score: 8054.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Wild Healing score: 8044.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fast Healing score: 8039.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Frost Rune score: 8013.60 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Bone Spirit score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Healing Hands score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sunlight Rune score: 8000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Soul Trap score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Heal Other score: 8000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Leech Seed score: 2060.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lamb of Mara score: 2000.00 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Inferno score: 2000.00 equipSlot: BothHands equipUnsigned: 3
+[info] actor: Lucien Flavius item: Courage score: 2000.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Lightning Bolt score: 553.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 553.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 535.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Firebolt score: 509.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 506.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 505.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Circle of Strength score: 500.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 309.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Poisonous Touch score: 295.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 281.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 263.30 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 255.13 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 254.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 254.08 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 253.53 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Thundercrack score: 59.85 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Lightning Bolt score: 53.23 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Rift Bolt score: 53.20 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Poisonous Touch score: 45.00 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Hailstone score: 35.10 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Sparks score: 31.92 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Crackle score: 13.30 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Firebolt score: 9.35 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Ice Spike score: 6.80 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Creeping Cold score: 5.13 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Fracture score: 5.10 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Flames score: 4.59 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Frostbite score: 4.08 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item: Dragon's Teeth score: 3.53 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.57 equipSlot: RightHand equipUnsigned: 1
+[info] actor: Lucien Flavius item: Elven Sword of Winnowing score: 2.56 equipSlot: LeftHand equipUnsigned: 2
+[info] actor: Lucien Flavius item:  score: 0.03 equipSlot: BothHands equipUnsigned: 3

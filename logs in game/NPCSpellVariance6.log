@@ -1,0 +1,73 @@
+[info] Loaded plugin
+[info] Sinking animation event hook for NPC
+[info] Sinking complete.
+[info] recieved KID finished event
+[info] N: Lucien Flavius adding spell: Sparks
+[info] N: Lucien Flavius adding spell: Lightning Bolt
+[info] N: Lucien Flavius adding spell: Ice Spike
+[info] N: Lucien Flavius adding spell: Poisonous Touch
+[info] N: Lucien Flavius adding spell: Dragon's Teeth
+[info] N: Lucien Flavius adding spell: Rift Bolt
+[info] N: Lucien Flavius adding spell: Creeping Cold
+[info] N: Lucien Flavius adding spell: Fracture
+[info] N: Lucien Flavius removing non-matching spell: Ash Form
+[info] N: Lucien Flavius removing non-matching spell: Chilling Touch
+[info] N: Lucien Flavius removing non-matching spell: Blood Lance
+[info] N: Lucien Flavius removing non-matching spell: Vampiric Touch
+[info] N: Lucien Flavius removing non-matching spell: Vampiric Bolt
+[info] N: Lucien Flavius removing non-matching spell: Stormblast
+[info] N: Lucien Flavius removing non-matching spell: Sleet Storm
+[info] N: Lucien Flavius removing non-matching spell: Cyclonic Rift
+[info] N: Lucien Flavius removing non-matching spell: Finger of Death
+[info] N: Lucien Flavius removing non-matching spell: Forbidden Sun
+[info] N: Lucien Flavius removing non-matching spell: Blood Boil
+[info] N: Lucien Flavius removing non-matching spell: Hidden Cobra
+[info] N: Lucien Flavius removing non-matching spell: Howling Blast
+[info] N: Lucien Flavius removing non-matching spell: Life's Finale
+[info] N: Lucien Flavius removing non-matching spell: Incendiary Flow
+[info] N: Lucien Flavius removing non-matching spell: Empathic Agony
+[info] N: Lucien Flavius removing non-matching spell: Harrowing Dirge
+[info] N: Lucien Flavius removing non-matching spell: Vampire - Hemalurgic Spike
+[info] N: Lucien Flavius removing non-matching spell: Lightning Bolt Right
+[info] N: Lucien Flavius removing non-matching spell: Raze
+[info] N: Lucien Flavius removing non-matching spell: Ice Storm Right
+[info] actor: Lucien Flavius itemSet1: Conjure Flame Atronach scoreSet1: 0.00 slotSet1: 3 equipSlot1: LeftHand equipUns1: 2
+[info] actor: Lucien Flavius itemSet1: Crackle scoreSet1: 0.00 slotSet1: 3 equipSlot1: RightHand equipUns1: 1
+[info] actor: Lucien Flavius itemSet2: Conjure Flame Atronach scoreSet2: 0.00 slotSet2: 3 equipSlot2: LeftHand equipUns2: 2
+[info] actor: Lucien Flavius itemSet2: Crackle scoreSet2: 0.00 slotSet2: 3 equipSlot2: RightHand equipUns2: 1
+[info] actor: Lucien Flavius itemSet1: Conjure Flame Atronach scoreSet1: 0.00 slotSet1: 3 equipSlot1: LeftHand equipUns1: 2
+[info] actor: Lucien Flavius itemSet1: Thundercrack scoreSet1: 0.00 slotSet1: 3 equipSlot1: RightHand equipUns1: 1
+[info] actor: Lucien Flavius itemSet2: Conjure Flame Atronach scoreSet2: 0.00 slotSet2: 3 equipSlot2: LeftHand equipUns2: 2
+[info] actor: Lucien Flavius itemSet2: Thundercrack scoreSet2: 0.00 slotSet2: 3 equipSlot2: RightHand equipUns2: 1
+[info] actor: Lucien Flavius itemSet1: J'zargo's Flame Cloak Scroll scoreSet1: 0.00 slotSet1: 3 equipSlot1: LeftHand equipUns1: 2
+[info] actor: Lucien Flavius itemSet1: Thundercrack scoreSet1: 0.00 slotSet1: 3 equipSlot1: RightHand equipUns1: 1
+[info] actor: Lucien Flavius itemSet2: J'zargo's Flame Cloak Scroll scoreSet2: 0.00 slotSet2: 3 equipSlot2: LeftHand equipUns2: 2
+[info] actor: Lucien Flavius itemSet2: Thundercrack scoreSet2: 0.00 slotSet2: 3 equipSlot2: RightHand equipUns2: 1
+[info] actor: Lucien Flavius itemSet1: J'zargo's Flame Cloak Scroll scoreSet1: 0.00 slotSet1: 3 equipSlot1: LeftHand equipUns1: 2
+[info] actor: Lucien Flavius itemSet1: Thundercrack scoreSet1: 0.00 slotSet1: 3 equipSlot1: RightHand equipUns1: 1
+[info] actor: Lucien Flavius itemSet2: J'zargo's Flame Cloak Scroll scoreSet2: 0.00 slotSet2: 3 equipSlot2: LeftHand equipUns2: 2
+[info] actor: Lucien Flavius itemSet2: Thundercrack scoreSet2: 0.00 slotSet2: 3 equipSlot2: RightHand equipUns2: 1
+[info] actor: Lucien Flavius itemSet1: Heal Other scoreSet1: 0.00 slotSet1: 3 equipSlot1: RightHand equipUns1: 1
+[info] actor: Lucien Flavius itemSet1: Courage scoreSet1: 0.00 slotSet1: 3 equipSlot1: LeftHand equipUns1: 2
+[info] actor: Lucien Flavius itemSet2: Heal Other scoreSet2: 0.00 slotSet2: 3 equipSlot2: RightHand equipUns2: 1
+[info] actor: Lucien Flavius itemSet2: Courage scoreSet2: 0.00 slotSet2: 3 equipSlot2: LeftHand equipUns2: 2
+[info] actor: Lucien Flavius itemSet1: Heal Other scoreSet1: 0.00 slotSet1: 3 equipSlot1: RightHand equipUns1: 1
+[info] actor: Lucien Flavius itemSet1: Courage scoreSet1: 0.00 slotSet1: 3 equipSlot1: LeftHand equipUns1: 2
+[info] actor: Lucien Flavius itemSet2: Heal Other scoreSet2: 0.00 slotSet2: 3 equipSlot2: RightHand equipUns2: 1
+[info] actor: Lucien Flavius itemSet2: Courage scoreSet2: 0.00 slotSet2: 3 equipSlot2: LeftHand equipUns2: 2
+[info] actor: Lucien Flavius itemSet1: Lightning Rune scoreSet1: 0.00 slotSet1: 3 equipSlot1: RightHand equipUns1: 1
+[info] actor: Lucien Flavius itemSet1: Firebolt scoreSet1: 0.00 slotSet1: 3 equipSlot1: LeftHand equipUns1: 2
+[info] actor: Lucien Flavius itemSet2: Lightning Rune scoreSet2: 0.00 slotSet2: 3 equipSlot2: RightHand equipUns2: 1
+[info] actor: Lucien Flavius itemSet2: Firebolt scoreSet2: 0.00 slotSet2: 3 equipSlot2: LeftHand equipUns2: 2
+[info] actor: Lucien Flavius itemSet1: Lightning Rune scoreSet1: 0.00 slotSet1: 3 equipSlot1: RightHand equipUns1: 1
+[info] actor: Lucien Flavius itemSet1: Firebolt scoreSet1: 0.00 slotSet1: 3 equipSlot1: LeftHand equipUns1: 2
+[info] actor: Lucien Flavius itemSet2: Lightning Rune scoreSet2: 0.00 slotSet2: 3 equipSlot2: RightHand equipUns2: 1
+[info] actor: Lucien Flavius itemSet2: Firebolt scoreSet2: 0.00 slotSet2: 3 equipSlot2: LeftHand equipUns2: 2
+[info] actor: Lucien Flavius itemSet1: Staff of the Frost Atronach scoreSet1: 0.00 slotSet1: 3 equipSlot1: RightHand equipUns1: 1
+[info] actor: Lucien Flavius itemSet1: Steadfast Ward scoreSet1: 0.00 slotSet1: 3 equipSlot1: LeftHand equipUns1: 2
+[info] actor: Lucien Flavius itemSet2: Staff of the Frost Atronach scoreSet2: 0.00 slotSet2: 3 equipSlot2: RightHand equipUns2: 1
+[info] actor: Lucien Flavius itemSet2: Steadfast Ward scoreSet2: 0.00 slotSet2: 3 equipSlot2: LeftHand equipUns2: 2
+[info] actor: Lucien Flavius itemSet1: Heal Other scoreSet1: 0.00 slotSet1: 3 equipSlot1: LeftHand equipUns1: 2
+[info] actor: Lucien Flavius itemSet1: Courage scoreSet1: 0.00 slotSet1: 3 equipSlot1: RightHand equipUns1: 1
+[info] actor: Lucien Flavius itemSet2: Heal Other scoreSet2: 0.00 slotSet2: 3 equipSlot2: LeftHand equipUns2: 2
+[info] actor: Lucien Flavius itemSet2: Courage scoreSet2: 0.00 slotSet2: 3 equipSlot2: RightHand equipUns2: 1
