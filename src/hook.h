@@ -226,7 +226,6 @@ namespace hooks
 		static void Mod_CombatInventory_Weapons_Reset(RE::Actor *a_actor, RE::CombatController *a_controller);
         static void Check_CombatInventory(RE::Actor* a_actor, RE::CombatController* a_controller);
         static void Vary_AI_Scores(RE::Actor *a_actor, bool combat_start = false);
-		static void scan_behaviour(RE::Actor *a_actor);
 		static std::string GetTargetVariable(RE::SpellItem *a_spell);
 		void ClearUpdates(RE::Actor *a_actor, bool clearAll = false);
 		static bool GetEquipped(RE::Actor *a_actor, RE::TESForm *item);
@@ -656,7 +655,7 @@ namespace hooks
 			return &singleton;
 		}
 
-		static bool ShouldEquipSpell(RE::ActorEquipManager *a_this, RE::Actor *a_actor, RE::SpellItem *a_spell, const RE::BGSEquipSlot *a_slot);
+		static std::pair<bool, RE::SpellItem *> ShouldEquipSpell(RE::ActorEquipManager *a_this, RE::Actor *a_actor, RE::SpellItem *a_spell, const RE::BGSEquipSlot *a_slot);
 
 		static inline std::thread *registery = nullptr;
 
@@ -677,9 +676,18 @@ namespace hooks
 			{
 				if (a_this, a_actor, a_spell, a_slot)
 				{
-					if (!ShouldEquipSpell(a_this, a_actor, a_spell, a_slot))
+					const auto ShouldEquip = ShouldEquipSpell(a_this, a_actor, a_spell, a_slot);
+
+					if (!ShouldEquip.first)
 					{
-						return;
+						if (ShouldEquip.second)
+						{
+							return func(a_this, a_actor, ShouldEquip.second, a_slot);
+						}
+						else
+						{
+							return;
+						}
 					}
 				}
 

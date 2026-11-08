@@ -2630,8 +2630,7 @@ namespace hooks
 									}
 								}
 								need_allied_targeting = true;
-							}else
-							{
+							}{
 								// teleporting enemy most likely
 								return;
 							}
@@ -2900,17 +2899,18 @@ namespace hooks
 		return a_object;
 	}
 
-	bool SpellEquipManager::ShouldEquipSpell(RE::ActorEquipManager *a_this, RE::Actor *a_actor, RE::SpellItem *a_spell, const RE::BGSEquipSlot *a_slot)
+	std::pair<bool, RE::SpellItem *> SpellEquipManager::ShouldEquipSpell(RE::ActorEquipManager *a_this, RE::Actor *a_actor, RE::SpellItem *a_spell, const RE::BGSEquipSlot *a_slot)
 	{
 
 		bool shouldEquip = true;
+		RE::SpellItem *alt_spell = nullptr;
 
 		if (!OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_Equip_ByPass") && OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_IsinCombat") && OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_IsMage"))
 		{
 			auto H = RE::TESDataHandler::GetSingleton();
 			const auto lefthand = H->LookupForm<RE::BGSEquipSlot>(0x13F43, "Skyrim.esm");
 			const auto righthand = H->LookupForm<RE::BGSEquipSlot>(0x13F42, "Skyrim.esm");
-			// const auto eitherhand = H->LookupForm<RE::BGSEquipSlot>(0x13F44, "Skyrim.esm");
+			const auto eitherhand = H->LookupForm<RE::BGSEquipSlot>(0x13F44, "Skyrim.esm");
 			const auto bothhands = H->LookupForm<RE::BGSEquipSlot>(0x13F45, "Skyrim.esm");
 
 			// a_actor->HasKeywordString("NSV_SpellSword");
@@ -2946,22 +2946,9 @@ namespace hooks
 					shouldEquip = false;
 				}
 			}
-
-			if (shouldEquip)
-			{
-				if (a_slot == lefthand)
-				{
-					OnMeleeHitHook::GetAttackSpell(a_actor, true);
-				}
-				else if (a_slot == righthand)
-				{
-					OnMeleeHitHook::GetAttackSpell(a_actor);
-				}
-			}
 		}
-
-
-		return shouldEquip;
+		
+		return {shouldEquip, alt_spell};
 	}
 
 
@@ -3344,7 +3331,8 @@ namespace hooks
 		}
 	}
 
-	void OnMeleeHitHook::scan_behaviour(RE::Actor *a_actor){
+	void OnMeleeHitHook::GetAttackSpell(RE::Actor *a_actor, bool lefthand)
+	{
 		Scan_Teammates_Undead(a_actor);
 		Scan_Teammates_CommandedActor(a_actor);
 		Scan_Teammates_inRange(a_actor, 320.0f);
@@ -3357,12 +3345,9 @@ namespace hooks
 		Scan_Teammates_NeedCloak(a_actor);
 		Scan_Teammates_NeedInvisibility(a_actor);
 		Scan_Teammates_NeedSurvival(a_actor);
-
+		
 		Scan_Soul_Gems(a_actor);
-	}
 
-	void OnMeleeHitHook::GetAttackSpell(RE::Actor *a_actor, bool lefthand)
-	{
 		const auto limbospell = a_actor->GetActorRuntimeData().currentProcess;
 
 		if (limbospell)
@@ -3872,8 +3857,7 @@ namespace hooks
 		    if (!actor->IsPlayerRef()){
 				if (OnMeleeHitHook::GetBoolVariable(actor, "bNSV_IsinCombat"))
 				{
-					OnMeleeHitHook::scan_behaviour(actor);
-					// OnMeleeHitHook::GetAttackSpell(actor, true);
+					OnMeleeHitHook::GetAttackSpell(actor, true);
 				}
 			}
 			break;
@@ -3883,8 +3867,8 @@ namespace hooks
 			{
 				if (OnMeleeHitHook::GetBoolVariable(actor, "bNSV_IsinCombat"))
 				{
-					OnMeleeHitHook::scan_behaviour(actor);
-					// OnMeleeHitHook::GetAttackSpell(actor);
+					OnMeleeHitHook::GetAttackSpell(actor);
+
 					// if (!(actor->HasKeywordString("TLH_Harkon_Key") || OnMeleeHitHook::getrace_VLserana(actor)))
 					// {
 					// 	OnMeleeHitHook::Toggle_Casting(actor, true);
