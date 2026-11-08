@@ -655,7 +655,7 @@ namespace hooks
 			return &singleton;
 		}
 
-		static std::pair<bool, RE::SpellItem *> ShouldEquipSpell(RE::ActorEquipManager *a_this, RE::Actor *a_actor, RE::SpellItem *a_spell, const RE::BGSEquipSlot *a_slot);
+		static bool ShouldEquipSpell(RE::ActorEquipManager *a_this, RE::Actor *a_actor, RE::SpellItem *a_spell, const RE::BGSEquipSlot *a_slot);
 
 		static inline std::thread *registery = nullptr;
 
@@ -676,18 +676,9 @@ namespace hooks
 			{
 				if (a_this, a_actor, a_spell, a_slot)
 				{
-					const auto ShouldEquip = ShouldEquipSpell(a_this, a_actor, a_spell, a_slot);
-
-					if (!ShouldEquip.first)
+					if (!ShouldEquipSpell(a_this, a_actor, a_spell, a_slot))
 					{
-						if (ShouldEquip.second)
-						{
-							return func(a_this, a_actor, ShouldEquip.second, a_slot);
-						}
-						else
-						{
-							return;
-						}
+						return;
 					}
 				}
 

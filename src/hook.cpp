@@ -2479,7 +2479,7 @@ namespace hooks
 			const auto NSV_Survival_Lethal = RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Survival_Lethal");
 			const auto NSV_Generic_Buff = RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Generic_Buff");
 			const auto NSV_Tag_Undead = RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Tag_Undead");
-			const auto NSV_Tag_Vampiric = RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Tag_Vampiric");
+			// const auto NSV_Tag_Vampiric = RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Tag_Vampiric");
 			const auto NSV_Tag_Summoned = RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Tag_Summoned");
 			const auto NSV_Tag_Weapon = RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Tag_Weapon");
 			const auto NSV_Tag_Ally = RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Tag_Ally");
@@ -2630,7 +2630,8 @@ namespace hooks
 									}
 								}
 								need_allied_targeting = true;
-							}{
+
+							}else{
 								// teleporting enemy most likely
 								return;
 							}
@@ -2899,18 +2900,18 @@ namespace hooks
 		return a_object;
 	}
 
-	std::pair<bool, RE::SpellItem *> SpellEquipManager::ShouldEquipSpell(RE::ActorEquipManager *a_this, RE::Actor *a_actor, RE::SpellItem *a_spell, const RE::BGSEquipSlot *a_slot)
+	bool SpellEquipManager::ShouldEquipSpell(RE::ActorEquipManager *a_this, RE::Actor *a_actor, RE::SpellItem *a_spell, const RE::BGSEquipSlot *a_slot)
 	{
 
 		bool shouldEquip = true;
-		RE::SpellItem *alt_spell = nullptr;
+		// RE::SpellItem *alt_spell = nullptr;
 
 		if (!OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_Equip_ByPass") && OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_IsinCombat") && OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_IsMage"))
 		{
 			auto H = RE::TESDataHandler::GetSingleton();
 			const auto lefthand = H->LookupForm<RE::BGSEquipSlot>(0x13F43, "Skyrim.esm");
 			const auto righthand = H->LookupForm<RE::BGSEquipSlot>(0x13F42, "Skyrim.esm");
-			const auto eitherhand = H->LookupForm<RE::BGSEquipSlot>(0x13F44, "Skyrim.esm");
+			// const auto eitherhand = H->LookupForm<RE::BGSEquipSlot>(0x13F44, "Skyrim.esm");
 			const auto bothhands = H->LookupForm<RE::BGSEquipSlot>(0x13F45, "Skyrim.esm");
 
 			// a_actor->HasKeywordString("NSV_SpellSword");
@@ -2948,7 +2949,7 @@ namespace hooks
 			}
 		}
 		
-		return {shouldEquip, alt_spell};
+		return shouldEquip;
 	}
 
 
