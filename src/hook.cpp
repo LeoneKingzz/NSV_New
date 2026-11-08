@@ -2721,6 +2721,8 @@ namespace hooks
 
 				if (!(FF_TL || CC_TL) && need_allied_targeting)
 				{
+					// lefthand ? a_actor->NotifyAnimationGraph("BeginCastLeft") : a_actor->NotifyAnimationGraph("BeginCastRight");
+
 					if (auto combatCtrl = a_actor->GetActorRuntimeData().combatController; combatCtrl)
 					{
 						if (auto friend_handle = focus_ally->GetHandle(); friend_handle)
@@ -2953,7 +2955,7 @@ namespace hooks
 				{
 					OnMeleeHitHook::GetAttackSpell(a_actor, true);
 				}
-				else if (a_slot == righthand)
+				else
 				{
 					OnMeleeHitHook::GetAttackSpell(a_actor);
 				}
