@@ -938,10 +938,9 @@ namespace hooks
 		{
 			if (a_event && a_event->opening && std::string_view(a_event->menuName.c_str()) == RE::DialogueMenu::MENU_NAME)
 			{
-				// SKSE::GetTaskInterface()->AddTask([]
-				// 								  { 
-				// 									// LogDialogueCheck(); 
-				// 								});
+				SKSE::GetTaskInterface()->AddTask([]
+												  { ApplyDialogueSetting(); 
+												});
 			}
 			if (a_event && !a_event->opening && std::string_view(a_event->menuName.c_str()) == RE::DialogueMenu::MENU_NAME && Settings::GetSingleton()->general.asked)
 			{
@@ -1054,32 +1053,17 @@ namespace hooks
 		}
 	}
 
-	void LoadForms()
+	void ApplyDialogueSetting()
 	{
-		// currentFollowerFaction = RE::TESForm::LookupByID<RE::TESFaction>(0x0005C84E);
-		auto dh = RE::TESDataHandler::GetSingleton();
-		auto ds = Settings::GetSingleton();
-		if (!dh || !ds || !dh->LookupModByName("NPC Spell Variance.esp"))
+		if (auto a_quest = RE::TESDataHandler::GetSingleton()->LookupForm<RE::TESQuest>(0xB0A, "NPC Spell Variance.esp"); a_quest && !a_quest->IsRunning())
 		{
-			return;
-		}
-		ds->general.TacticsQuest = dh->LookupForm<RE::TESQuest>(0xB0A, "NPC Spell Variance.esp");
-		// ds->general.SpellSwordYes = dh->LookupForm<RE::TESTopic>(0xB10, "NPC Spell Variance.esp");
-		// ds->general.SpellSwordNo = dh->LookupForm<RE::TESTopic>(0xB13, "NPC Spell Variance.esp");
-		// ds->general.HealerYes = dh->LookupForm<RE::TESTopic>(0xB18, "NPC Spell Variance.esp");
-		// ds->general.HealerNo = dh->LookupForm<RE::TESTopic>(0xB1B, "NPC Spell Variance.esp");
-		// ds->general.SupportYes = dh->LookupForm<RE::TESTopic>(0xB20, "NPC Spell Variance.esp");
-		// ds->general.SupportNo = dh->LookupForm<RE::TESTopic>(0xB23, "NPC Spell Variance.esp");
-		// logger::info("{} {}"sv, a_actor->GetDisplayFullName(), a_message.c_str());
-	}
+			if(a_quest->Start()){
 
-	void ApplyDialogueSetting(bool a_startQuest)
-	{
-		auto ds = Settings::GetSingleton();
+				RE::SendHUDMessage::ShowHUDMessage("Started NSV Tactics Quest");
+			}else{
 
-		if (a_startQuest && ds->general.TacticsQuest && !ds->general.TacticsQuest->IsRunning())
-		{
-			ds->general.TacticsQuest->Start(); // a save made before the plugin was installed
+				RE::SendHUDMessage::ShowHUDMessage("Failed to Start NSV Tactics Quest");
+			}
 		}
 	}
 
