@@ -9,7 +9,7 @@ void MessageHandler(SKSE::MessagingInterface::Message *a_msg)
     case SKSE::MessagingInterface::kDataLoaded:
         hooks::animEventHandler::Register(false, true);
         hooks::OnMeleeHitHook::install();
-        // hooks::LoadForms();
+        hooks::LoadForms();
         // hooks::InputEventHandler::SinkEventHandlers();
         break;
 
@@ -17,9 +17,15 @@ void MessageHandler(SKSE::MessagingInterface::Message *a_msg)
         // hooks::OnMeleeHitHook::GetSingleton()->init();
         break;
 
+    case SKSE::MessagingInterface::kPostLoadGame:
+        // hooks::OnMeleeHitHook::GetSingleton()->init();
+        hooks::ApplyDialogueSetting(true);
+        break;
+
     case SKSE::MessagingInterface::kNewGame:
         hooks::Settings::GetSingleton()->general.askedH.reset();
         hooks::Settings::GetSingleton()->general.asked = false;
+        hooks::ApplyDialogueSetting(true);
         break;
 
     default:

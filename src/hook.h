@@ -43,6 +43,7 @@ namespace hooks
 	bool IsValidLifeState(RE::Actor *a_actor, bool checkDeath = false);
 	void LoadForms();
 	void HandleDialogueChoice();
+	void ApplyDialogueSetting(bool a_startQuest);
 
 	// void incrementLastFormID()
 	// {
@@ -818,7 +819,7 @@ namespace hooks
 			// RE::TESTopic *SpellSwordNo{nullptr};
 			// RE::TESTopic *SupportYes{nullptr};
 			// RE::TESTopic *SupportNo{nullptr};
-			// RE::TESQuest *TacticsQuest{nullptr};
+			RE::TESQuest *TacticsQuest{nullptr};
 
 			RE::ActorHandle askedH; // chosen in dialogue, handled when the dialogue closes
 			int askedWant{-1};

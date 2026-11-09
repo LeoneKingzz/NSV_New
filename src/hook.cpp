@@ -1057,13 +1057,13 @@ namespace hooks
 	void LoadForms()
 	{
 		// currentFollowerFaction = RE::TESForm::LookupByID<RE::TESFaction>(0x0005C84E);
-		// auto dh = RE::TESDataHandler::GetSingleton();
-		// auto ds = Settings::GetSingleton();
-		// if (!dh || !ds || !dh->LookupModByName("NPC Spell Variance.esp"))
-		// {
-		// 	return;
-		// }
-		// ds->general.TacticsQuest = dh->LookupForm<RE::TESQuest>(0xB0A, "NPC Spell Variance.esp");
+		auto dh = RE::TESDataHandler::GetSingleton();
+		auto ds = Settings::GetSingleton();
+		if (!dh || !ds || !dh->LookupModByName("NPC Spell Variance.esp"))
+		{
+			return;
+		}
+		ds->general.TacticsQuest = dh->LookupForm<RE::TESQuest>(0xB0A, "NPC Spell Variance.esp");
 		// ds->general.SpellSwordYes = dh->LookupForm<RE::TESTopic>(0xB10, "NPC Spell Variance.esp");
 		// ds->general.SpellSwordNo = dh->LookupForm<RE::TESTopic>(0xB13, "NPC Spell Variance.esp");
 		// ds->general.HealerYes = dh->LookupForm<RE::TESTopic>(0xB18, "NPC Spell Variance.esp");
@@ -1071,6 +1071,16 @@ namespace hooks
 		// ds->general.SupportYes = dh->LookupForm<RE::TESTopic>(0xB20, "NPC Spell Variance.esp");
 		// ds->general.SupportNo = dh->LookupForm<RE::TESTopic>(0xB23, "NPC Spell Variance.esp");
 		// logger::info("{} {}"sv, a_actor->GetDisplayFullName(), a_message.c_str());
+	}
+
+	void ApplyDialogueSetting(bool a_startQuest)
+	{
+		auto ds = Settings::GetSingleton();
+
+		if (a_startQuest && ds->general.TacticsQuest && !ds->general.TacticsQuest->IsRunning())
+		{
+			ds->general.TacticsQuest->Start(); // a save made before the plugin was installed
+		}
 	}
 
 	float OnMeleeHitHook::get_angle_he_me(RE::Actor *me, RE::Actor *he, RE::BGSAttackData *attackdata){
