@@ -877,7 +877,7 @@ namespace hooks
 			return RE::BSEventNotifyControl::kContinue;
 		}
 
-		RE::BSEventNotifyControl ProcessEvent(const RE::TESTopicInfoEvent *a_event, RE::BSTEventSource<RE::TESTopicInfoEvent> *) override
+		RE::BSEventNotifyControl ProcessEvent(const RE::TESTopicInfoEvent *a_event, RE::BSTEventSource<RE::TESTopicInfoEvent>*)
 		{
 			if (!a_event || !a_event->speakerRef || a_event->type.get() != RE::TESTopicInfoEvent::TopicInfoEventType::kTopicBegin)
 			{
@@ -934,7 +934,7 @@ namespace hooks
 			return RE::BSEventNotifyControl::kContinue;
 		}
 
-		RE::BSEventNotifyControl ProcessEvent(const RE::MenuOpenCloseEvent *a_event, RE::BSTEventSource<RE::MenuOpenCloseEvent> *) override
+		RE::BSEventNotifyControl ProcessEvent(const RE::MenuOpenCloseEvent *a_event, RE::BSTEventSource<RE::MenuOpenCloseEvent>*)
 		{
 			if (a_event && a_event->opening && std::string_view(a_event->menuName.c_str()) == RE::DialogueMenu::MENU_NAME)
 			{
