@@ -42,6 +42,7 @@ namespace hooks
 	bool IsUndead(const RE::Actor *a_actor, float a_comparison_value);
 	bool IsValidLifeState(RE::Actor *a_actor, bool checkDeath = false);
 	void LoadForms();
+	void HandleDialogueChoice();
 
 	// void incrementLastFormID()
 	// {
