@@ -936,12 +936,12 @@ namespace hooks
 
 		RE::BSEventNotifyControl ProcessEvent(const RE::MenuOpenCloseEvent *a_event, RE::BSTEventSource<RE::MenuOpenCloseEvent>*)
 		{
-			if (a_event && a_event->opening && std::string_view(a_event->menuName.c_str()) == RE::DialogueMenu::MENU_NAME)
-			{
-				SKSE::GetTaskInterface()->AddTask([]
-												  { ApplyDialogueSetting(); 
-												});
-			}
+			// if (a_event && a_event->opening && std::string_view(a_event->menuName.c_str()) == RE::DialogueMenu::MENU_NAME)
+			// {
+			// 	SKSE::GetTaskInterface()->AddTask([]
+			// 									  { ApplyDialogueSetting(); 
+			// 									});
+			// }
 			if (a_event && !a_event->opening && std::string_view(a_event->menuName.c_str()) == RE::DialogueMenu::MENU_NAME && Settings::GetSingleton()->general.asked)
 			{
 				SKSE::GetTaskInterface()->AddTask([]
