@@ -4181,7 +4181,9 @@ namespace hooks
 		// eventSourceHolder->AddEventSink<RE::TESCellFullyLoadedEvent>(eventSink);
 
 		eventSourceHolder->AddEventSink<RE::TESTopicInfoEvent>(eventSink);
-		eventSourceHolder->AddEventSink<RE::MenuOpenCloseEvent>(eventSink);
+
+		auto ui = RE::UI::GetSingleton();
+		ui->AddEventSink<RE::MenuOpenCloseEvent>(eventSink);
 	}
 
 
