@@ -1057,13 +1057,72 @@ namespace hooks
 	{
 		if (auto a_quest = RE::TESDataHandler::GetSingleton()->LookupForm<RE::TESQuest>(0xB0A, "NPC Spell Variance.esp"); a_quest && !a_quest->IsRunning())
 		{
-			if(a_quest->Start()){
+			a_quest->Start();
+		}
+	}
 
-				RE::SendHUDMessage::ShowHUDMessage("Started NSV Tactics Quest");
-			}else{
+	void OnMeleeHitHook::UpdateCSstyle(RE::Actor *a_actor, bool a_giveSpellSwordStyle)
+	{
+		std::string a_message;
+		bool a_hyphen = false;
+		auto itt = _CSstyles.find(a_actor);
 
-				RE::SendHUDMessage::ShowHUDMessage("Failed to Start NSV Tactics Quest");
+		if (auto c_style = RE::TESDataHandler::GetSingleton()->LookupForm<RE::TESCombatStyle>(0x107812, "Skyrim.esm"); c_style)
+		{
+			if (a_giveSpellSwordStyle)
+			{
+
+				if (itt == _CSstyles.end())
+				{
+					if (a_actor->GetActorRuntimeData().combatController && a_actor->GetActorRuntimeData().combatController->combatStyle)
+					{
+						auto defaultStyle = a_actor->GetActorRuntimeData().combatController->combatStyle;
+						_CSstyles.emplace(a_actor, defaultStyle);
+						a_actor->GetActorRuntimeData().combatController->combatStyle = c_style;
+						a_message = "is now using the NSV SpellSword combatStyle";
+					}
+					else if (a_actor->GetActorRuntimeData().combatController && !a_actor->GetActorRuntimeData().combatController->combatStyle)
+					{
+						a_actor->GetActorRuntimeData().combatController->combatStyle = c_style;
+						a_message = "doesn't have a default combatStyle. Assigning NSV's Spellsword combatStyle anyway.";
+					}
+					else
+					{
+						a_hyphen = true;
+						a_message = "combatController not found. Aborting command. Please, try again.";
+					}
+				}
+				else
+				{
+					a_message = "is already using the NSV SpellSword combatStyle";
+				}
 			}
+			else
+			{
+
+				if (itt == _CSstyles.end())
+				{
+					a_message = "isn't currently using the NSV SpellSword combatStyle";
+				}
+				else
+				{
+					_CSstyles.erase(itt);
+					a_hyphen = true;
+					a_message = "default combatStyle is restored";
+				}
+			}
+
+		}else{
+			a_hyphen = true;
+			a_message = "combatStyle lookup and update failed. Please, try again.";
+		}
+
+		if (!a_message.empty())
+		{
+			std::string space = " ";
+			std::string hyphen = "'s";
+			std::string b_message = a_hyphen ? a_actor->GetDisplayFullName() + hyphen + space + a_message : a_actor->GetDisplayFullName() + space + a_message;
+			RE::SendHUDMessage::ShowHUDMessage(b_message.c_str());
 		}
 	}
 
