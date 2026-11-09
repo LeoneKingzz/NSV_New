@@ -1093,17 +1093,25 @@ namespace hooks
 			{
 				if (itt == _CSstyles.end())
 				{
-					if (RE::ExtraCombatStyle *e_cs = new RE::ExtraCombatStyle; e_cs)
+					if (RE::ExtraCombatStyle *e_cs = static_cast<RE::ExtraCombatStyle *>(a_actor->extraList.GetByType(RE::ExtraDataType::kCombatStyle)); e_cs)
 					{
-						e_cs->combatStyle = c_style;
-						a_actor->extraList.Add(e_cs);
-						const auto defaultStyle = e_cs->combatStyle;
-						_CSstyles.emplace(a_actor, defaultStyle);
-						a_message = "is now using the NSV SpellSword combatStyle";
+						if (e_cs->combatStyle)
+						{
+							const auto defaultStyle = e_cs->combatStyle;
+							_CSstyles.emplace(a_actor, defaultStyle);
+							e_cs->combatStyle = c_style;
+							a_message = "is now using the NSV SpellSword combatStyle";
+						}
+						else
+						{
+							e_cs->combatStyle = c_style;
+							a_message = "doesn't have a default extra combatStyle. Assigning NSV's Spellsword combatStyle anyway.";
+						}
+
 					}else
 					{
 						a_hyphen = true;
-						a_message = "extra combatStyle creation failed. Please, try again.";
+						a_message = "extra combatStyle data not found. Please, try again.";
 					}
 				}
 				else
@@ -1124,7 +1132,7 @@ namespace hooks
 					{
 						if (itt->second)
 						{
-							e_cs->combatStyle = nullptr;
+							e_cs->combatStyle = itt->second;
 							_CSstyles.erase(itt);
 							a_hyphen = true;
 							a_message = "default combatStyle is restored";
