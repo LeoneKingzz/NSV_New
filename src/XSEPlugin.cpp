@@ -9,11 +9,17 @@ void MessageHandler(SKSE::MessagingInterface::Message *a_msg)
     case SKSE::MessagingInterface::kDataLoaded:
         hooks::animEventHandler::Register(false, true);
         hooks::OnMeleeHitHook::install();
+        // hooks::LoadForms();
         // hooks::InputEventHandler::SinkEventHandlers();
         break;
 
     case SKSE::MessagingInterface::kPostPostLoad:
         // hooks::OnMeleeHitHook::GetSingleton()->init();
+        break;
+
+    case SKSE::MessagingInterface::kNewGame:
+        hooks::Settings::GetSingleton()->general.askedH.reset();
+        hooks::Settings::GetSingleton()->general.asked = false;
         break;
 
     default:

@@ -622,6 +622,8 @@ namespace hooks
 		public RE::BSTEventSink<RE::TESSpellCastEvent>,
 		public RE::BSTEventSink<RE::TESDeathEvent>,
 		public RE::BSTEventSink<RE::TESCellFullyLoadedEvent>,
+		public RE::BSTEventSink<RE::MenuOpenCloseEvent>,
+		public RE::BSTEventSink<RE::TESTopicInfoEvent>,
 		public RE::BSTEventSink<SKSE::ModCallbackEvent>
 	{
 		OurEventSink() = default;
@@ -874,8 +876,202 @@ namespace hooks
 			}
 			return RE::BSEventNotifyControl::kContinue;
 		}
+
+		RE::BSEventNotifyControl ProcessEvent(const RE::TESTopicInfoEvent *a_event, RE::BSTEventSource<RE::TESTopicInfoEvent> *) override
+		{
+			if (!a_event || !a_event->speakerRef || a_event->type.get() != RE::TESTopicInfoEvent::TopicInfoEventType::kTopicBegin)
+			{
+				return RE::BSEventNotifyControl::kContinue;
+			}
+			auto info = RE::TESForm::LookupByID<RE::TESTopicInfo>(a_event->topicInfoFormID);
+			auto actor = a_event->speakerRef->As<RE::Actor>();
+			if (!info || !actor || !info->parentTopic)
+				return RE::BSEventNotifyControl::kContinue;
+			const auto t = info->parentTopic;
+			std::string EDID = clib_util::editorID::get_editorID(t);
+			switch (hash(EDID.c_str(), EDID.size()))
+			{
+			case "NSVTacticsSpellSwordYes"_h:
+				Settings::GetSingleton()->general.askedH = actor->GetHandle();
+				Settings::GetSingleton()->general.askedWant = 1;
+				Settings::GetSingleton()->general.asked = true;
+				break;
+
+			case "NSVTacticsSpellSwordNo"_h:
+				Settings::GetSingleton()->general.askedH = actor->GetHandle();
+				Settings::GetSingleton()->general.askedWant = 2;
+				Settings::GetSingleton()->general.asked = true;
+				break;
+
+			case "NSVTacticsHealerYes"_h:
+				Settings::GetSingleton()->general.askedH = actor->GetHandle();
+				Settings::GetSingleton()->general.askedWant = 3;
+				Settings::GetSingleton()->general.asked = true;
+				break;
+
+			case "NSVTacticsHealerNo"_h:
+				Settings::GetSingleton()->general.askedH = actor->GetHandle();
+				Settings::GetSingleton()->general.askedWant = 4;
+				Settings::GetSingleton()->general.asked = true;
+				break;
+
+			case "NSVTacticsSupportYes"_h:
+				Settings::GetSingleton()->general.askedH = actor->GetHandle();
+				Settings::GetSingleton()->general.askedWant = 5;
+				Settings::GetSingleton()->general.asked = true;
+				break;
+
+			case "NSVTacticsSupportNo"_h:
+				Settings::GetSingleton()->general.askedH = actor->GetHandle();
+				Settings::GetSingleton()->general.askedWant = 6;
+				Settings::GetSingleton()->general.asked = true;
+				break;
+
+			default:
+				break;
+			}
+
+			return RE::BSEventNotifyControl::kContinue;
+		}
+
+		RE::BSEventNotifyControl ProcessEvent(const RE::MenuOpenCloseEvent *a_event, RE::BSTEventSource<RE::MenuOpenCloseEvent> *) override
+		{
+			if (a_event && a_event->opening && std::string_view(a_event->menuName.c_str()) == RE::DialogueMenu::MENU_NAME)
+			{
+				// SKSE::GetTaskInterface()->AddTask([]
+				// 								  { 
+				// 									// LogDialogueCheck(); 
+				// 								});
+			}
+			if (a_event && !a_event->opening && std::string_view(a_event->menuName.c_str()) == RE::DialogueMenu::MENU_NAME && Settings::GetSingleton()->general.asked)
+			{
+				SKSE::GetTaskInterface()->AddTask([]
+												  {
+					HandleDialogueChoice();
+					
+				});
+			}
+			return RE::BSEventNotifyControl::kContinue;
+		}
 	};
 
+	void HandleDialogueChoice()
+	{
+		auto a_actor = Settings::GetSingleton()->general.askedH.get();
+		const int want = Settings::GetSingleton()->general.askedWant;
+
+		Settings::GetSingleton()->general.asked = false;
+		Settings::GetSingleton()->general.askedH.reset();
+		if (!a_actor){
+			return;
+		}
+		// "NSV_Healer"
+		// "NSV_Support"
+		std::string a_message;
+
+		switch (want)
+		{
+		case 1:
+			if (a_actor->HasKeywordString("NSV_SpellSword"))
+			{
+				a_message = "is already fighting as a SpellSword";
+			}else
+			{
+				a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_SpellSword"));
+				a_message = "will now fight as a SpellSword";
+			}
+			break;
+
+		case 2:
+			if (a_actor->HasKeywordString("NSV_SpellSword"))
+			{
+				a_actor->GetActorBase()->RemoveKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_SpellSword"));
+				a_message = "will stop fighting as a SpellSword";
+			}
+			else
+			{
+				a_message = "isn't currently fighting as a SpellSword";
+			}
+			break;
+
+		case 3:
+			if (a_actor->HasKeywordString("NSV_Healer"))
+			{
+				a_message = "is already prioritizing supportive heal spells";
+			}
+			else
+			{
+				a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Healer"));
+				a_message = "will begin prioritizing supportive heal spells";
+			}
+			break;
+
+		case 4:
+			if (a_actor->HasKeywordString("NSV_Healer"))
+			{
+				a_actor->GetActorBase()->RemoveKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Healer"));
+				a_message = "will stop prioritizing supportive heal spells";
+			}
+			else
+			{
+				a_message = "isn't currently prioritizing supportive heal spells";
+			}
+			break;
+
+		case 5:
+			if (a_actor->HasKeywordString("NSV_Support"))
+			{
+				a_message = "is already demostrating Supportive behaviour";
+			}
+			else
+			{
+				a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Support"));
+				a_message = "will now demostrate Supportive behaviour";
+			}
+			break;
+
+		case 6:
+			if (a_actor->HasKeywordString("NSV_Support"))
+			{
+				a_actor->GetActorBase()->RemoveKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Support"));
+				a_message = "will stop demostrating Supportive behaviour";
+			}
+			else
+			{
+				a_message = "isn't currently demostrating Supportive behaviour";
+			}
+			break;
+
+		default:
+			break;
+		}
+
+        if(!a_message.empty())
+		{
+			std::string space = " ";
+			std::string b_message = a_actor->GetDisplayFullName() + space + a_message;
+			RE::SendHUDMessage::ShowHUDMessage(b_message.c_str());
+		}
+	}
+
+	void LoadForms()
+	{
+		// currentFollowerFaction = RE::TESForm::LookupByID<RE::TESFaction>(0x0005C84E);
+		// auto dh = RE::TESDataHandler::GetSingleton();
+		// auto ds = Settings::GetSingleton();
+		// if (!dh || !ds || !dh->LookupModByName("NPC Spell Variance.esp"))
+		// {
+		// 	return;
+		// }
+		// ds->general.TacticsQuest = dh->LookupForm<RE::TESQuest>(0xB0A, "NPC Spell Variance.esp");
+		// ds->general.SpellSwordYes = dh->LookupForm<RE::TESTopic>(0xB10, "NPC Spell Variance.esp");
+		// ds->general.SpellSwordNo = dh->LookupForm<RE::TESTopic>(0xB13, "NPC Spell Variance.esp");
+		// ds->general.HealerYes = dh->LookupForm<RE::TESTopic>(0xB18, "NPC Spell Variance.esp");
+		// ds->general.HealerNo = dh->LookupForm<RE::TESTopic>(0xB1B, "NPC Spell Variance.esp");
+		// ds->general.SupportYes = dh->LookupForm<RE::TESTopic>(0xB20, "NPC Spell Variance.esp");
+		// ds->general.SupportNo = dh->LookupForm<RE::TESTopic>(0xB23, "NPC Spell Variance.esp");
+		// logger::info("{} {}"sv, a_actor->GetDisplayFullName(), a_message.c_str());
+	}
 
 	float OnMeleeHitHook::get_angle_he_me(RE::Actor *me, RE::Actor *he, RE::BGSAttackData *attackdata){
 		auto he_me = PolarAngle(me->GetPosition() - he->GetPosition());
@@ -3983,6 +4179,9 @@ namespace hooks
 		eventSourceHolder->AddEventSink<RE::TESDeathEvent>(eventSink);
 
 		// eventSourceHolder->AddEventSink<RE::TESCellFullyLoadedEvent>(eventSink);
+
+		eventSourceHolder->AddEventSink<RE::TESTopicInfoEvent>(eventSink);
+		eventSourceHolder->AddEventSink<RE::MenuOpenCloseEvent>(eventSink);
 	}
 
 

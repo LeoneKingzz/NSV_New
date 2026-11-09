@@ -41,10 +41,9 @@ namespace hooks
 	bool IsSpellTarget(const RE::Actor *a_actor, const RE::SpellItem *a_spell, float a_comparison_value);
 	bool IsUndead(const RE::Actor *a_actor, float a_comparison_value);
 	bool IsValidLifeState(RE::Actor *a_actor, bool checkDeath = false);
+	void LoadForms();
 
-    
-
-    // void incrementLastFormID()
+	// void incrementLastFormID()
 	// {
 	// 	++lastFormId;
 	// }
@@ -811,6 +810,18 @@ namespace hooks
 			void Load(CSimpleIniA &a_ini);
 			bool bWhiteListApproach = false;
 			bool bDebug = false;
+
+			// RE::TESTopic *HealerYes{nullptr};
+			// RE::TESTopic *HealerNo{nullptr};
+			// RE::TESTopic *SpellSwordYes{nullptr};
+			// RE::TESTopic *SpellSwordNo{nullptr};
+			// RE::TESTopic *SupportYes{nullptr};
+			// RE::TESTopic *SupportNo{nullptr};
+			// RE::TESQuest *TacticsQuest{nullptr};
+
+			RE::ActorHandle askedH; // chosen in dialogue, handled when the dialogue closes
+			int askedWant{-1};
+			bool asked{false};
 
 		} general;
 
