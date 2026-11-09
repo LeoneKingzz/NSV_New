@@ -1091,27 +1091,25 @@ namespace hooks
 		{
 			if (a_giveSpellSwordStyle)
 			{
+
 				if (itt == _CSstyles.end())
 				{
-					if (RE::ExtraCombatStyle *e_cs = static_cast<RE::ExtraCombatStyle *>(a_actor->extraList.GetByType(RE::ExtraDataType::kCombatStyle)); e_cs)
+					if (a_actor->GetActorRuntimeData().combatController && a_actor->GetActorRuntimeData().combatController->combatStyle)
 					{
-						if (e_cs->combatStyle)
-						{
-							const auto defaultStyle = e_cs->combatStyle;
-							_CSstyles.emplace(a_actor, defaultStyle);
-							e_cs->combatStyle = c_style;
-							a_message = "is now using the NSV SpellSword combatStyle";
-						}
-						else
-						{
-							e_cs->combatStyle = c_style;
-							a_message = "doesn't have a default extra combatStyle. Assigning NSV's Spellsword combatStyle anyway.";
-						}
-
-					}else
+						auto defaultStyle = a_actor->GetActorRuntimeData().combatController->combatStyle;
+						_CSstyles.emplace(a_actor, defaultStyle);
+						a_actor->GetActorRuntimeData().combatController->combatStyle = c_style;
+						a_message = "is now using the NSV SpellSword combatStyle";
+					}
+					else if (a_actor->GetActorRuntimeData().combatController && !a_actor->GetActorRuntimeData().combatController->combatStyle)
+					{
+						a_actor->GetActorRuntimeData().combatController->combatStyle = c_style;
+						a_message = "doesn't have a default combatStyle. Assigning NSV's Spellsword combatStyle anyway.";
+					}
+					else
 					{
 						a_hyphen = true;
-						a_message = "extra combatStyle data not found. Please, try again.";
+						a_message = "combatController not found. Aborting command. Please, try again.";
 					}
 				}
 				else
@@ -1128,23 +1126,16 @@ namespace hooks
 				}
 				else
 				{
-					if (RE::ExtraCombatStyle *e_cs = static_cast<RE::ExtraCombatStyle *>(a_actor->extraList.GetByType(RE::ExtraDataType::kCombatStyle)); e_cs)
+					if (a_actor->GetActorRuntimeData().combatController && a_actor->GetActorRuntimeData().combatController->combatStyle && itt->second)
 					{
-						if (itt->second)
-						{
-							e_cs->combatStyle = itt->second;
-							_CSstyles.erase(itt);
-							a_hyphen = true;
-							a_message = "default combatStyle is restored";
+						a_actor->GetActorRuntimeData().combatController->combatStyle = itt->second;
 
-						}else{
-							_CSstyles.erase(itt);
-							a_message = "doesn't have a default extra combatStyle. Aborting operation.";
-						}
-						
-					}
-					else
-					{
+						_CSstyles.erase(itt);
+						a_hyphen = true;
+						a_message = "default combatStyle is restored";
+
+					}else{
+
 						a_message = "default combatStyle restoration failed. Please, try again.";
 					}
 				}
