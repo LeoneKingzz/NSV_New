@@ -927,6 +927,18 @@ namespace hooks
 				Settings::GetSingleton()->general.asked = true;
 				break;
 
+			case "NSVTacticsSpellSwordCSYes"_h:
+				Settings::GetSingleton()->general.askedH = actor->GetHandle();
+				Settings::GetSingleton()->general.askedWant = 7;
+				Settings::GetSingleton()->general.asked = true;
+				break;
+
+			case "NSVTacticsSpellSwordCSNo"_h:
+				Settings::GetSingleton()->general.askedH = actor->GetHandle();
+				Settings::GetSingleton()->general.askedWant = 8;
+				Settings::GetSingleton()->general.asked = true;
+				break;
+
 			default:
 				break;
 			}
@@ -1041,6 +1053,14 @@ namespace hooks
 			}
 			break;
 
+		case 7:
+			OnMeleeHitHook::GetSingleton()->UpdateCSstyle(a_actor.get(), true);
+			break;
+
+		case 8:
+			OnMeleeHitHook::GetSingleton()->UpdateCSstyle(a_actor.get(), false);
+			break;
+
 		default:
 			break;
 		}
@@ -1106,9 +1126,18 @@ namespace hooks
 				}
 				else
 				{
-					_CSstyles.erase(itt);
-					a_hyphen = true;
-					a_message = "default combatStyle is restored";
+					if (a_actor->GetActorRuntimeData().combatController && a_actor->GetActorRuntimeData().combatController->combatStyle && itt->second)
+					{
+						a_actor->GetActorRuntimeData().combatController->combatStyle = itt->second;
+
+						_CSstyles.erase(itt);
+						a_hyphen = true;
+						a_message = "default combatStyle is restored";
+
+					}else{
+
+						a_message = "default combatStyle restoration failed. Please, try again.";
+					}
 				}
 			}
 
