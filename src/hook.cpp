@@ -791,6 +791,12 @@ namespace hooks
 				{
 					a_actor->SetGraphVariableBool("bNSV_Trap_Cool", false);
 				}
+
+				if (a_actor->HasKeywordString("NSV_SpellSword") && OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_UseSpellSwordCS"))
+				{
+					OnMeleeHitHook::UpdateCSstyle(a_actor);
+				}
+
 				break;
 
 			case RE::ACTOR_COMBAT_STATE::kSearching:
@@ -1054,11 +1060,11 @@ namespace hooks
 			break;
 
 		case 7:
-			OnMeleeHitHook::GetSingleton()->UpdateCSstyle(a_actor.get(), true);
+			OnMeleeHitHook::GetSingleton()->RegisterForCSstyle(a_actor.get(), true);
 			break;
 
 		case 8:
-			OnMeleeHitHook::GetSingleton()->UpdateCSstyle(a_actor.get(), false);
+			OnMeleeHitHook::GetSingleton()->RegisterForCSstyle(a_actor.get(), false);
 			break;
 
 		default:
@@ -1081,69 +1087,67 @@ namespace hooks
 		}
 	}
 
-	void OnMeleeHitHook::UpdateCSstyle(RE::Actor *a_actor, bool a_giveSpellSwordStyle)
-	{
+	void OnMeleeHitHook::RegisterForCSstyle(RE::Actor *a_actor, bool a_register){
+
 		std::string a_message;
 		bool a_hyphen = false;
-		auto itt = _CSstyles.find(a_actor);
 
-		if (auto c_style = RE::TESDataHandler::GetSingleton()->LookupForm<RE::TESCombatStyle>(0x107812, "Skyrim.esm"); c_style)
+		if (a_actor->HasKeywordString("NSV_SpellSword"))
 		{
-			if (a_giveSpellSwordStyle)
+			if (a_register)
 			{
-
-				if (itt == _CSstyles.end())
-				{
-					if (a_actor->GetActorRuntimeData().combatController && a_actor->GetActorRuntimeData().combatController->combatStyle)
-					{
-						auto defaultStyle = a_actor->GetActorRuntimeData().combatController->combatStyle;
-						_CSstyles.emplace(a_actor, defaultStyle);
-						a_actor->GetActorRuntimeData().combatController->combatStyle = c_style;
-						a_message = "is now using the NSV SpellSword combatStyle";
-					}
-					else if (a_actor->GetActorRuntimeData().combatController && !a_actor->GetActorRuntimeData().combatController->combatStyle)
-					{
-						a_actor->GetActorRuntimeData().combatController->combatStyle = c_style;
-						a_message = "doesn't have a default combatStyle. Assigning NSV's Spellsword combatStyle anyway.";
-					}
-					else
-					{
-						a_hyphen = true;
-						a_message = "combatController not found. Aborting command. Please, try again.";
-					}
-				}
-				else
-				{
-					a_message = "is already using the NSV SpellSword combatStyle";
-				}
+				a_actor->SetGraphVariableBool("bNSV_UseSpellSwordCS", true);
+				a_message = "is now registered for the NSV SpellSword combatStyle";
 			}
 			else
 			{
-
-				if (itt == _CSstyles.end())
-				{
-					a_message = "isn't currently using the NSV SpellSword combatStyle";
-				}
-				else
-				{
-					if (a_actor->GetActorRuntimeData().combatController && a_actor->GetActorRuntimeData().combatController->combatStyle && itt->second)
-					{
-						a_actor->GetActorRuntimeData().combatController->combatStyle = itt->second;
-
-						_CSstyles.erase(itt);
-						a_hyphen = true;
-						a_message = "default combatStyle is restored";
-
-					}else{
-
-						a_message = "default combatStyle restoration failed. Please, try again.";
-					}
-				}
+				a_actor->SetGraphVariableBool("bNSV_UseSpellSwordCS", false);
+				a_message = "has unregistered for the NSV SpellSword combatStyle";
 			}
 
 		}else{
+			a_message = "isn't currently fighting as a SpellSword. Please amend this before registering for the CombatStyle.";
+		}
+
+		if (!a_message.empty())
+		{
+			std::string space = " ";
+			std::string hyphen = "'s";
+			std::string b_message = a_hyphen ? a_actor->GetDisplayFullName() + hyphen + space + a_message : a_actor->GetDisplayFullName() + space + a_message;
+			RE::SendHUDMessage::ShowHUDMessage(b_message.c_str());
+		}
+	}
+
+	void OnMeleeHitHook::UpdateCSstyle(RE::Actor *a_actor)
+	{
+		std::string a_message;
+		bool a_hyphen = false;
+
+		if (auto c_style = RE::TESDataHandler::GetSingleton()->LookupForm<RE::TESCombatStyle>(0x107812, "Skyrim.esm"); c_style)
+		{
+			if (a_actor->GetActorRuntimeData().combatController && a_actor->GetActorRuntimeData().combatController->combatStyle)
+			{
+				if (a_actor->GetActorRuntimeData().combatController->combatStyle != c_style)
+				{
+					a_actor->GetActorRuntimeData().combatController->combatStyle = c_style;
+					a_message = "is now using the NSV SpellSword combatStyle";
+				}
+			}
+			else if (a_actor->GetActorRuntimeData().combatController && !a_actor->GetActorRuntimeData().combatController->combatStyle)
+			{
+				a_actor->GetActorRuntimeData().combatController->combatStyle = c_style;
+				a_message = "doesn't have a default combatStyle. Assigning NSV's Spellsword combatStyle anyway.";
+			}
+			else
+			{
+				a_hyphen = true;
+				a_message = "combatController not found. Aborting command. Please, try registering again.";
+			}
+
+		}else
+		{
 			a_hyphen = true;
-			a_message = "combatStyle lookup and update failed. Please, try again.";
+			a_message = "combatStyle lookup and update failed. Please, try registering again.";
 		}
 
 		if (!a_message.empty())

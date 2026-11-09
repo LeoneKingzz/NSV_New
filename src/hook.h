@@ -229,7 +229,8 @@ namespace hooks
 		static std::string GetTargetVariable(RE::SpellItem *a_spell);
 		void ClearUpdates(RE::Actor *a_actor, bool clearAll = false);
 		static bool GetEquipped(RE::Actor *a_actor, RE::TESForm *item);
-		void UpdateCSstyle(RE::Actor *a_actor, bool a_giveSpellSwordStyle);
+		static void UpdateCSstyle(RE::Actor *a_actor);
+		void RegisterForCSstyle(RE::Actor *a_actor, bool a_register);
 		// void process_inv_spells(RE::Actor *a_actor, std::chrono::steady_clock::time_point time_now);
 		static bool getrace_VLserana(RE::Actor *a_actor, bool ThegirlsOnly = true)
 		{
@@ -561,7 +562,7 @@ namespace hooks
 		//PRECISION_API::IVPrecision1* _precision_API;
 		//static void PrecisionWeaponsCallback_Post(const PRECISION_API::PrecisionHitData& a_precisionHitData, const RE::HitData& a_hitdata);
 		std::unordered_map<RE::Actor *, std::vector<RE::Projectile *>> _RunesCast;
-		std::unordered_map<RE::Actor *, RE::TESCombatStyle *> _CSstyles;
+		// std::unordered_map<RE::Actor *, RE::TESCombatStyle *> _CSstyles;
 		// std::shared_mutex mtx_RunesCast;
 
 
