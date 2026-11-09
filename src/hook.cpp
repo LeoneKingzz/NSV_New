@@ -1094,23 +1094,23 @@ namespace hooks
 
 				if (itt == _CSstyles.end())
 				{
-					if (a_actor->GetActorBase()->combatStyle)
+					if (a_actor->GetActorRuntimeData().combatController && a_actor->GetActorRuntimeData().combatController->combatStyle)
 					{
-						auto defaultStyle = a_actor->GetActorBase()->combatStyle;
+						auto defaultStyle = a_actor->GetActorRuntimeData().combatController->combatStyle;
 						_CSstyles.emplace(a_actor, defaultStyle);
-						a_actor->GetActorBase()->combatStyle = c_style;
+						a_actor->GetActorRuntimeData().combatController->combatStyle = c_style;
 						a_message = "is now using the NSV SpellSword combatStyle";
+					}
+					else if (a_actor->GetActorRuntimeData().combatController && !a_actor->GetActorRuntimeData().combatController->combatStyle)
+					{
+						a_actor->GetActorRuntimeData().combatController->combatStyle = c_style;
+						a_message = "doesn't have a default combatStyle. Assigning NSV's Spellsword combatStyle anyway.";
 					}
 					else
 					{
-						a_actor->GetActorBase()->combatStyle = c_style;
-						a_message = "doesn't have a default combatStyle. Assigning NSV's Spellsword combatStyle anyway.";
+						a_hyphen = true;
+						a_message = "combatController not found. Aborting command. Please, try again.";
 					}
-					// else
-					// {
-					// 	a_hyphen = true;
-					// 	a_message = "combatController not found. Aborting command. Please, try again.";
-					// }
 				}
 				else
 				{
@@ -1126,9 +1126,9 @@ namespace hooks
 				}
 				else
 				{
-					if (a_actor->GetActorBase()->combatStyle && itt->second)
+					if (a_actor->GetActorRuntimeData().combatController && a_actor->GetActorRuntimeData().combatController->combatStyle && itt->second)
 					{
-						a_actor->GetActorBase()->combatStyle = itt->second;
+						a_actor->GetActorRuntimeData().combatController->combatStyle = itt->second;
 
 						_CSstyles.erase(itt);
 						a_hyphen = true;
