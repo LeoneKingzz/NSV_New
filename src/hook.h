@@ -824,7 +824,7 @@ namespace hooks
 			// RE::TESQuest *TacticsQuest{nullptr};
 
 			RE::ActorHandle askedH; // chosen in dialogue, handled when the dialogue closes
-			int askedWant{-1};
+			std::vector<int> askedWant;
 			bool asked{false};
 
 		} general;
