@@ -1150,12 +1150,15 @@ namespace hooks
 			a_message = "combatStyle lookup and update failed. Please, try registering again.";
 		}
 
-		if (!a_message.empty())
+		if (Settings::GetSingleton()->general.bDebug)
 		{
-			std::string space = " ";
-			std::string hyphen = "'s";
-			std::string b_message = a_hyphen ? a_actor->GetDisplayFullName() + hyphen + space + a_message : a_actor->GetDisplayFullName() + space + a_message;
-			RE::SendHUDMessage::ShowHUDMessage(b_message.c_str());
+			if (!a_message.empty())
+			{
+				std::string space = " ";
+				std::string hyphen = "'s";
+				std::string b_message = a_hyphen ? a_actor->GetDisplayFullName() + hyphen + space + a_message : a_actor->GetDisplayFullName() + space + a_message;
+				RE::SendHUDMessage::ShowHUDMessage(b_message.c_str());
+			}
 		}
 	}
 
