@@ -618,7 +618,7 @@ namespace hooks
 		public RE::BSTEventSink<RE::TESSwitchRaceCompleteEvent>,
 		public RE::BSTEventSink<RE::TESEquipEvent>,
 		public RE::BSTEventSink<RE::TESCombatEvent>,
-		public RE::BSTEventSink<RE::TESCellAttachDetachEvent>,
+		public RE::BSTEventSink<RE::TESActorLocationChangeEvent>,
 		public RE::BSTEventSink<RE::TESSpellCastEvent>,
 		public RE::BSTEventSink<RE::TESDeathEvent>,
 		public RE::BSTEventSink<RE::TESCellFullyLoadedEvent>,
@@ -840,13 +840,13 @@ namespace hooks
 			return RE::BSEventNotifyControl::kContinue;
 		}
 
-		RE::BSEventNotifyControl ProcessEvent(const RE::TESCellAttachDetachEvent* event, RE::BSTEventSource<RE::TESCellAttachDetachEvent>*)
+		RE::BSEventNotifyControl ProcessEvent(const RE::TESActorLocationChangeEvent* event, RE::BSTEventSource<RE::TESActorLocationChangeEvent>*)
 		{
-			if (!event || !event->reference)
+			if (!event || !event->actor)
 			{
 				return RE::BSEventNotifyControl::kContinue;
 			}
-			auto a_actor = event->reference->As<RE::Actor>();
+			auto a_actor = event->actor->As<RE::Actor>();
 
 			if (!a_actor || a_actor->IsPlayerRef()) {
 				return RE::BSEventNotifyControl::kContinue;
@@ -4345,7 +4345,7 @@ namespace hooks
 		// eventSourceHolder->AddEventSink<RE::TESSwitchRaceCompleteEvent>(eventSink);
 		// eventSourceHolder->AddEventSink<RE::TESEquipEvent>(eventSink);
 		eventSourceHolder->AddEventSink<RE::TESCombatEvent>(eventSink);
-		eventSourceHolder->AddEventSink<RE::TESCellAttachDetachEvent>(eventSink);
+		eventSourceHolder->AddEventSink<RE::TESActorLocationChangeEvent>(eventSink);
 		//eventSourceHolder->AddEventSink<RE::TESSpellCastEvent>(eventSink);
 		eventSourceHolder->AddEventSink<RE::TESDeathEvent>(eventSink);
 
