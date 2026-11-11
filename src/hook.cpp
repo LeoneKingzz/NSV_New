@@ -797,7 +797,7 @@ namespace hooks
 					a_actor->SetGraphVariableBool("bNSV_Trap_Cool", false);
 				}
 
-				if (a_actor->HasKeywordString("NSV_SpellSword") && OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_UseSpellSwordCS"))
+				if (OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_UseSpellSwordCS"))
 				{
 					OnMeleeHitHook::UpdateCSstyle(a_actor);
 				}
@@ -1186,21 +1186,29 @@ namespace hooks
 		std::string a_message;
 		bool a_hyphen = false;
 
-		if (a_actor->HasKeywordString("NSV_SpellSword"))
+		if (a_register)
 		{
-			if (a_register)
+			if (OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_UseSpellSwordCS"))
+			{
+				a_message = "is already registered for the NSV SpellSword combatStyle";
+			
+			}else
 			{
 				a_actor->SetGraphVariableBool("bNSV_UseSpellSwordCS", true);
 				a_message = "is now registered for the NSV SpellSword combatStyle";
 			}
-			else
+		}
+		else
+		{
+			if (OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_UseSpellSwordCS"))
 			{
 				a_actor->SetGraphVariableBool("bNSV_UseSpellSwordCS", false);
 				a_message = "has unregistered for the NSV SpellSword combatStyle";
 			}
-
-		}else{
-			a_message = "isn't currently fighting as a SpellSword. Please amend this before registering for the CombatStyle.";
+			else
+			{
+				a_message = "isn't currently registered for the NSV SpellSword combatStyle";
+			}
 		}
 
 		if (!a_message.empty())
@@ -5314,6 +5322,7 @@ namespace hooks
 
 		if(set){
 			DS->store.ini.SetBoolValue(section.c_str(), actorname.c_str(), var);
+			DS->store.ini.SaveFile(DS->store.path);
 		}else{
 			DS->store.ini.GetBoolValue(section.c_str(), actorname.c_str(), var);
 		}
