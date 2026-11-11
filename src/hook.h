@@ -43,6 +43,8 @@ namespace hooks
 	bool IsValidLifeState(RE::Actor *a_actor, bool checkDeath = false);
 	void HandleDialogueChoice();
 	void ApplyDialogueSetting();
+	void RegisterActorTactic(RE::ActorHandle &a_actor, std::vector<RE::ActorHandle> &list, bool add);
+	void TacticMaintenance(RE::ActorHandle a_actor, std::vector<RE::ActorHandle> &list, std::string a_var, std::string a_key);
 
 	// void incrementLastFormID()
 	// {
@@ -815,17 +817,13 @@ namespace hooks
 			bool bWhiteListApproach = false;
 			bool bDebug = false;
 
-			// RE::TESTopic *HealerYes{nullptr};
-			// RE::TESTopic *HealerNo{nullptr};
-			// RE::TESTopic *SpellSwordYes{nullptr};
-			// RE::TESTopic *SpellSwordNo{nullptr};
-			// RE::TESTopic *SupportYes{nullptr};
-			// RE::TESTopic *SupportNo{nullptr};
-			// RE::TESQuest *TacticsQuest{nullptr};
-
 			RE::ActorHandle askedH; // chosen in dialogue, handled when the dialogue closes
 			std::vector<int> askedWant;
 			bool asked{false};
+
+			std::vector<RE::ActorHandle> SpellSwords;
+			std::vector<RE::ActorHandle> Healers;
+			std::vector<RE::ActorHandle> Supporters;
 
 		} general;
 
