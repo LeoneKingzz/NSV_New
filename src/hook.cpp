@@ -5324,7 +5324,7 @@ namespace hooks
 			DS->store.ini.SetBoolValue(section.c_str(), actorname.c_str(), var);
 			DS->store.ini.SaveFile(DS->store.path);
 		}else{
-			DS->store.ini.GetBoolValue(section.c_str(), actorname.c_str(), var);
+			var = DS->store.ini.GetBoolValue(section.c_str(), actorname.c_str(), var);
 		}
 
 		return var;
