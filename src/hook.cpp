@@ -765,9 +765,10 @@ namespace hooks
 			case RE::ACTOR_COMBAT_STATE::kCombat:
 				a_actor->SetGraphVariableBool("bNSV_IsinCombat", true);
 
-				TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.SpellSwords, "bNSV_IsSpellSword", "NSV_SpellSword");
-				TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.Healers, "bNSV_IsHealer", "NSV_Healer");
-				TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.SpellSwords, "bNSV_IsSupport", "NSV_Support");
+				TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.SpellSwords, "bNSV_IsSpellSword", "NSV_SpellSword", "NSV_SpellSword");
+				TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.Healers, "bNSV_IsHealer", "NSV_Healer", "NSV_Healer");
+				TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.Supporters, "bNSV_IsSupport", "NSV_Support", "NSV_Support");
+				TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.SpellSwordSCombatSytle, "bNSV_UseSpellSwordCS", "", "NSV_SSCSytle");
 
 				OnMeleeHitHook::Vary_AI_Scores(a_actor, true);
 				// if (!OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_Equip_OK"))
@@ -852,9 +853,10 @@ namespace hooks
 				return RE::BSEventNotifyControl::kContinue;
 			}
 
-			TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.SpellSwords, "bNSV_IsSpellSword", "NSV_SpellSword");
-			TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.Healers, "bNSV_IsHealer", "NSV_Healer");
-			TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.SpellSwords, "bNSV_IsSupport", "NSV_Support");
+			TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.SpellSwords, "bNSV_IsSpellSword", "NSV_SpellSword", "NSV_SpellSword");
+			TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.Healers, "bNSV_IsHealer", "NSV_Healer", "NSV_Healer");
+			TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.Supporters, "bNSV_IsSupport", "NSV_Support", "NSV_Support");
+			TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.SpellSwordSCombatSytle, "bNSV_UseSpellSwordCS", "", "NSV_SSCSytle");
 
 			return RE::BSEventNotifyControl::kContinue;
 		}
@@ -984,13 +986,14 @@ namespace hooks
 
 	void HandleDialogueChoice()
 	{
-		auto a_handle = Settings::GetSingleton()->general.askedH;
-		auto a_actor = Settings::GetSingleton()->general.askedH.get();
-		const auto want = Settings::GetSingleton()->general.askedWant;
+		auto DS = Settings::GetSingleton();
+		auto a_handle = DS->general.askedH;
+		auto a_actor = DS->general.askedH.get();
+		const auto want = DS->general.askedWant;
 
-		Settings::GetSingleton()->general.asked = false;
-		Settings::GetSingleton()->general.askedH.reset();
-		Settings::GetSingleton()->general.askedWant.clear();
+		DS->general.asked = false;
+		DS->general.askedH.reset();
+		DS->general.askedWant.clear();
 		if (!a_handle || !a_actor || want.empty())
 		{
 			return;
@@ -1009,7 +1012,8 @@ namespace hooks
 				}
 				else
 				{
-					RegisterActorTactic(a_handle, Settings::GetSingleton()->general.SpellSwords, true);
+					DS->general.LogTacticUser(a_actor.get(), "NSV_SpellSword", true, true);
+					RegisterActorTactic(a_handle, DS->general.SpellSwords, true);
 					a_actor->SetGraphVariableBool("bNSV_IsSpellSword", true);
 					a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_SpellSword"));
 					a_message = "will now fight as a SpellSword";
@@ -1019,7 +1023,8 @@ namespace hooks
 			case 2:
 				if (OnMeleeHitHook::GetBoolVariable(a_actor.get(), "bNSV_IsSpellSword"))
 				{
-					RegisterActorTactic(a_handle, Settings::GetSingleton()->general.SpellSwords, false);
+					DS->general.LogTacticUser(a_actor.get(), "NSV_SpellSword", true, false);
+					RegisterActorTactic(a_handle, DS->general.SpellSwords, false);
 					a_actor->SetGraphVariableBool("bNSV_IsSpellSword", false);
 					a_actor->GetActorBase()->RemoveKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_SpellSword"));
 					a_message = "will stop fighting as a SpellSword";
@@ -1037,7 +1042,8 @@ namespace hooks
 				}
 				else
 				{
-					RegisterActorTactic(a_handle, Settings::GetSingleton()->general.Healers, true);
+					DS->general.LogTacticUser(a_actor.get(), "NSV_Healer", true, true);
+					RegisterActorTactic(a_handle, DS->general.Healers, true);
 					a_actor->SetGraphVariableBool("bNSV_IsHealer", true);
 					a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Healer"));
 					a_message = "will begin prioritizing supportive heal spells";
@@ -1047,7 +1053,8 @@ namespace hooks
 			case 4:
 				if (OnMeleeHitHook::GetBoolVariable(a_actor.get(), "bNSV_IsHealer"))
 				{
-					RegisterActorTactic(a_handle, Settings::GetSingleton()->general.Healers, false);
+					DS->general.LogTacticUser(a_actor.get(), "NSV_Healer", true, false);
+					RegisterActorTactic(a_handle, DS->general.Healers, false);
 					a_actor->SetGraphVariableBool("bNSV_IsHealer", false);
 					a_actor->GetActorBase()->RemoveKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Healer"));
 					a_message = "will stop prioritizing supportive heal spells";
@@ -1065,7 +1072,8 @@ namespace hooks
 				}
 				else
 				{
-					RegisterActorTactic(a_handle, Settings::GetSingleton()->general.Supporters, true);
+					DS->general.LogTacticUser(a_actor.get(), "NSV_Support", true, true);
+					RegisterActorTactic(a_handle, DS->general.Supporters, true);
 					a_actor->SetGraphVariableBool("bNSV_IsSupport", true);
 					a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Support"));
 					a_message = "will now demostrate Supportive behaviour";
@@ -1075,7 +1083,8 @@ namespace hooks
 			case 6:
 				if (OnMeleeHitHook::GetBoolVariable(a_actor.get(), "bNSV_IsSupport"))
 				{
-					RegisterActorTactic(a_handle, Settings::GetSingleton()->general.Supporters, false);
+					DS->general.LogTacticUser(a_actor.get(), "NSV_Support", true, false);
+					RegisterActorTactic(a_handle, DS->general.Supporters, false);
 					a_actor->SetGraphVariableBool("bNSV_IsSupport", false);
 					a_actor->GetActorBase()->RemoveKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Support"));
 					a_message = "will stop demostrating Supportive behaviour";
@@ -1087,10 +1096,12 @@ namespace hooks
 				break;
 
 			case 7:
+				DS->general.LogTacticUser(a_actor.get(), "NSV_SSCSytle", true, true);
 				OnMeleeHitHook::GetSingleton()->RegisterForCSstyle(a_actor.get(), true);
 				break;
 
 			case 8:
+				DS->general.LogTacticUser(a_actor.get(), "NSV_SSCSytle", true, false);
 				OnMeleeHitHook::GetSingleton()->RegisterForCSstyle(a_actor.get(), false);
 				break;
 
@@ -1131,7 +1142,7 @@ namespace hooks
 		}
 	}
 
-	void TacticMaintenance(RE::ActorHandle a_actor, std::vector<RE::ActorHandle> &list, std::string a_var, std::string a_key)
+	void TacticMaintenance(RE::ActorHandle a_actor, std::vector<RE::ActorHandle> &list, std::string a_var, std::string a_key, std::string log_key)
 	{
 		if (list.empty() || !a_actor || !a_actor.get())
 		{
@@ -1141,30 +1152,31 @@ namespace hooks
 		auto position = std::find(list.begin(), list.end(), a_actor);
 		if (position != list.end())
 		{
-			if (!OnMeleeHitHook::GetBoolVariable(a_actor.get().get(), a_var))
+			if (!a_var.empty() && !OnMeleeHitHook::GetBoolVariable(a_actor.get().get(), a_var))
 			{
 				a_actor.get()->SetGraphVariableBool(a_var, true);
 			}
 
-			if (!a_actor.get()->HasKeywordString(a_key))
+			if (!a_key.empty() && !a_actor.get()->HasKeywordString(a_key))
 			{
 				a_actor.get()->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>(a_key));
 			}
 		}
 		else
 		{
-			if (OnMeleeHitHook::GetBoolVariable(a_actor.get().get(), a_var))
+			if (Settings::GetSingleton()->general.LogTacticUser(a_actor.get().get(), log_key, false, false))
 			{
-				if (!a_actor.get()->HasKeywordString(a_key))
+				list.emplace_back(a_actor);
+
+				if (!a_var.empty() && !OnMeleeHitHook::GetBoolVariable(a_actor.get().get(), a_var))
+				{
+					a_actor.get()->SetGraphVariableBool(a_var, true);
+				}
+
+				if (!a_key.empty() && !a_actor.get()->HasKeywordString(a_key))
 				{
 					a_actor.get()->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>(a_key));
 				}
-				list.emplace_back(a_actor);
-			}
-			else if (a_actor.get()->HasKeywordString(a_key))
-			{
-				a_actor.get()->SetGraphVariableBool(a_var, true);
-				list.emplace_back(a_actor);
 			}
 		}
 	}
@@ -5257,21 +5269,21 @@ namespace hooks
 	// }
 
 	void Settings::Load(){
-		constexpr auto path = "Data\\SKSE\\Plugins\\NPCSpellVariance.ini";
 
-		CSimpleIniA ini;
-		ini.SetUnicode();
+		auto DS = GetSingleton();
+		
+		DS->store.ini.SetUnicode();
 
-		ini.LoadFile(path);
+		DS->store.ini.LoadFile(DS->store.path);
 
-		general.Load(ini);
+		general.Load(DS->store.ini);
 
-		include_spells_mods.Load(ini);
-		include_spells_keywords.Load(ini);
-		exclude_spells_mods.Load(ini);
-		exclude_spells_keywords.Load(ini);
+		include_spells_mods.Load(DS->store.ini);
+		include_spells_keywords.Load(DS->store.ini);
+		exclude_spells_mods.Load(DS->store.ini);
+		exclude_spells_keywords.Load(DS->store.ini);
 
-		ini.SaveFile(path);
+		DS->store.ini.SaveFile(DS->store.path);
 	}
 
 	
@@ -5287,6 +5299,26 @@ namespace hooks
 
 		a_ini.SetBoolValue(section, "bWhiteListApproach", DS->general.bWhiteListApproach, ";If set to true, only the include mods and keywords are considered. Else only the exclude approach is used");
 		a_ini.SetBoolValue(section, "bDebug", DS->general.bDebug, ";Enables logging for some processes");
+	}
+
+	bool Settings::General_Settings::LogTacticUser(RE::Actor *a_actor, std::string section, bool set, bool var)
+	{
+		std::string actorname = a_actor->GetDisplayFullName();
+
+		if (actorname.empty())
+		{
+			return var;
+		}
+
+		auto DS = GetSingleton();
+
+		if(set){
+			DS->store.ini.SetBoolValue(section.c_str(), actorname.c_str(), var);
+		}else{
+			DS->store.ini.GetBoolValue(section.c_str(), actorname.c_str(), var);
+		}
+
+		return var;
 	}
 
 	void Settings::Include_AllSpells_withKeywords::Load(CSimpleIniA &a_ini)
@@ -9058,4 +9090,21 @@ namespace hooks
 
 // 		break;
 // 	}
+// }
+
+// if (!a_var.empty() && OnMeleeHitHook::GetBoolVariable(a_actor.get().get(), a_var))
+// {
+// 	if (!a_key.empty() && !a_actor.get()->HasKeywordString(a_key))
+// 	{
+// 		a_actor.get()->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>(a_key));
+// 	}
+// 	list.emplace_back(a_actor);
+// }
+// else if (!a_key.empty() && a_actor.get()->HasKeywordString(a_key))
+// {
+// 	if (!a_var.empty())
+// 	{
+// 		a_actor.get()->SetGraphVariableBool(a_var, true);
+// 	}
+// 	list.emplace_back(a_actor);
 // }

@@ -44,7 +44,7 @@ namespace hooks
 	void HandleDialogueChoice();
 	void ApplyDialogueSetting();
 	void RegisterActorTactic(RE::ActorHandle &a_actor, std::vector<RE::ActorHandle> &list, bool add);
-	void TacticMaintenance(RE::ActorHandle a_actor, std::vector<RE::ActorHandle> &list, std::string a_var, std::string a_key);
+	void TacticMaintenance(RE::ActorHandle a_actor, std::vector<RE::ActorHandle> &list, std::string a_var, std::string a_key, std::string log_key);
 
 	// void incrementLastFormID()
 	// {
@@ -811,9 +811,17 @@ namespace hooks
 
 		void Load();
 
+		struct INIstore
+		{
+			CSimpleIniA ini;
+			constexpr static const char *path = "Data\\SKSE\\Plugins\\NPCSpellVariance.ini";
+
+		} store;
+
 		struct General_Settings
 		{
 			void Load(CSimpleIniA &a_ini);
+			bool LogTacticUser(RE::Actor *a_player, std::string section, bool set, bool var);
 			bool bWhiteListApproach = false;
 			bool bDebug = false;
 
@@ -824,6 +832,7 @@ namespace hooks
 			std::vector<RE::ActorHandle> SpellSwords;
 			std::vector<RE::ActorHandle> Healers;
 			std::vector<RE::ActorHandle> Supporters;
+			std::vector<RE::ActorHandle> SpellSwordSCombatSytle;
 
 		} general;
 
