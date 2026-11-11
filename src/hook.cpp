@@ -772,6 +772,10 @@ namespace hooks
 						a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_SpellSword"));
 					}
 				}
+				else if (a_actor->HasKeywordString("NSV_SpellSword"))
+				{
+					a_actor->SetGraphVariableBool("bNSV_IsSpellSword", true);
+				}
 
 				if (OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_IsHealer"))
 				{
@@ -780,6 +784,10 @@ namespace hooks
 						a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Healer"));
 					}
 				}
+				else if (a_actor->HasKeywordString("NSV_Healer"))
+				{
+					a_actor->SetGraphVariableBool("bNSV_IsHealer", true);
+				}
 
 				if (OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_IsSupport"))
 				{
@@ -787,6 +795,10 @@ namespace hooks
 					{
 						a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Support"));
 					}
+				}
+				else if (a_actor->HasKeywordString("NSV_Support"))
+				{
+					a_actor->SetGraphVariableBool("bNSV_IsSupport", true);
 				}
 
 				OnMeleeHitHook::Vary_AI_Scores(a_actor, true);
@@ -862,13 +874,51 @@ namespace hooks
 
 		RE::BSEventNotifyControl ProcessEvent(const RE::TESActorLocationChangeEvent* event, RE::BSTEventSource<RE::TESActorLocationChangeEvent>*)
 		{
+			if (!event || !event->actor)
+			{
+				return RE::BSEventNotifyControl::kContinue;
+			}
 			auto a_actor = event->actor->As<RE::Actor>();
 
-			if (!a_actor || !a_actor->IsPlayerRef()) {
+			if (!a_actor || a_actor->IsPlayerRef()) {
 				return RE::BSEventNotifyControl::kContinue;
 			}
 
-			OnMeleeHitHook::GetSingleton()->scan_activeRunes(nullptr, nullptr, false, false, true);
+			if (OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_IsSpellSword"))
+			{
+				if (!a_actor->HasKeywordString("NSV_SpellSword"))
+				{
+					a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_SpellSword"));
+				}
+			}
+			else if (a_actor->HasKeywordString("NSV_SpellSword"))
+			{
+				a_actor->SetGraphVariableBool("bNSV_IsSpellSword", true);
+			}
+
+			if (OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_IsHealer"))
+			{
+				if (!a_actor->HasKeywordString("NSV_Healer"))
+				{
+					a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Healer"));
+				}
+			}
+			else if (a_actor->HasKeywordString("NSV_Healer"))
+			{
+				a_actor->SetGraphVariableBool("bNSV_IsHealer", true);
+			}
+
+			if (OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_IsSupport"))
+			{
+				if (!a_actor->HasKeywordString("NSV_Support"))
+				{
+					a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>("NSV_Support"));
+				}
+			}
+			else if (a_actor->HasKeywordString("NSV_Support"))
+			{
+				a_actor->SetGraphVariableBool("bNSV_IsSupport", true);
+			}
 
 			return RE::BSEventNotifyControl::kContinue;
 		}
@@ -4297,7 +4347,7 @@ namespace hooks
 		// eventSourceHolder->AddEventSink<RE::TESSwitchRaceCompleteEvent>(eventSink);
 		// eventSourceHolder->AddEventSink<RE::TESEquipEvent>(eventSink);
 		eventSourceHolder->AddEventSink<RE::TESCombatEvent>(eventSink);
-		//eventSourceHolder->AddEventSink<RE::TESActorLocationChangeEvent>(eventSink);
+		eventSourceHolder->AddEventSink<RE::TESActorLocationChangeEvent>(eventSink);
 		//eventSourceHolder->AddEventSink<RE::TESSpellCastEvent>(eventSink);
 		eventSourceHolder->AddEventSink<RE::TESDeathEvent>(eventSink);
 
