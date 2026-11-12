@@ -1144,8 +1144,8 @@ namespace hooks
 
 	void TacticMaintenance(RE::Actor *a_actor, std::vector<RE::ActorHandle> &list, std::string a_var, std::string a_key, std::string log_key)
 	{
-		auto position = std::find(list.begin(), list.end(), a_actor);
-		
+		auto position = std::find(list.begin(), list.end(), a_actor->GetHandle());
+
 		if (position != list.end())
 		{
 			if (!a_var.empty() && !OnMeleeHitHook::GetBoolVariable(a_actor, a_var))
