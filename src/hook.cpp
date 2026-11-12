@@ -765,10 +765,10 @@ namespace hooks
 			case RE::ACTOR_COMBAT_STATE::kCombat:
 				a_actor->SetGraphVariableBool("bNSV_IsinCombat", true);
 
-				TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.SpellSwords, "bNSV_IsSpellSword", "NSV_SpellSword", "NSV_SpellSword");
-				TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.Healers, "bNSV_IsHealer", "NSV_Healer", "NSV_Healer");
-				TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.Supporters, "bNSV_IsSupport", "NSV_Support", "NSV_Support");
-				TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.SpellSwordSCombatSytle, "bNSV_UseSpellSwordCS", "", "NSV_SSCSytle");
+				TacticMaintenance(a_actor, Settings::GetSingleton()->general.SpellSwords, "bNSV_IsSpellSword", "NSV_SpellSword", "NSV_SpellSword");
+				TacticMaintenance(a_actor, Settings::GetSingleton()->general.Healers, "bNSV_IsHealer", "NSV_Healer", "NSV_Healer");
+				TacticMaintenance(a_actor, Settings::GetSingleton()->general.Supporters, "bNSV_IsSupport", "NSV_Support", "NSV_Support");
+				TacticMaintenance(a_actor, Settings::GetSingleton()->general.SpellSwordSCombatSytle, "bNSV_UseSpellSwordCS", "", "NSV_SSCSytle");
 
 				OnMeleeHitHook::Vary_AI_Scores(a_actor, true);
 				// if (!OnMeleeHitHook::GetBoolVariable(a_actor, "bNSV_Equip_OK"))
@@ -853,10 +853,10 @@ namespace hooks
 				return RE::BSEventNotifyControl::kContinue;
 			}
 
-			TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.SpellSwords, "bNSV_IsSpellSword", "NSV_SpellSword", "NSV_SpellSword");
-			TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.Healers, "bNSV_IsHealer", "NSV_Healer", "NSV_Healer");
-			TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.Supporters, "bNSV_IsSupport", "NSV_Support", "NSV_Support");
-			TacticMaintenance(a_actor->GetHandle(), Settings::GetSingleton()->general.SpellSwordSCombatSytle, "bNSV_UseSpellSwordCS", "", "NSV_SSCSytle");
+			TacticMaintenance(a_actor, Settings::GetSingleton()->general.SpellSwords, "bNSV_IsSpellSword", "NSV_SpellSword", "NSV_SpellSword");
+			TacticMaintenance(a_actor, Settings::GetSingleton()->general.Healers, "bNSV_IsHealer", "NSV_Healer", "NSV_Healer");
+			TacticMaintenance(a_actor, Settings::GetSingleton()->general.Supporters, "bNSV_IsSupport", "NSV_Support", "NSV_Support");
+			TacticMaintenance(a_actor, Settings::GetSingleton()->general.SpellSwordSCombatSytle, "bNSV_UseSpellSwordCS", "", "NSV_SSCSytle");
 
 			return RE::BSEventNotifyControl::kContinue;
 		}
@@ -1142,40 +1142,35 @@ namespace hooks
 		}
 	}
 
-	void TacticMaintenance(RE::ActorHandle a_actor, std::vector<RE::ActorHandle> &list, std::string a_var, std::string a_key, std::string log_key)
+	void TacticMaintenance(RE::Actor *a_actor, std::vector<RE::ActorHandle> &list, std::string a_var, std::string a_key, std::string log_key)
 	{
-		if (list.empty() || !a_actor || !a_actor.get())
-		{
-			return;
-		}
-
 		auto position = std::find(list.begin(), list.end(), a_actor);
 		if (position != list.end())
 		{
-			if (!a_var.empty() && !OnMeleeHitHook::GetBoolVariable(a_actor.get().get(), a_var))
+			if (!a_var.empty() && !OnMeleeHitHook::GetBoolVariable(a_actor, a_var))
 			{
-				a_actor.get()->SetGraphVariableBool(a_var, true);
+				a_actor->SetGraphVariableBool(a_var, true);
 			}
 
-			if (!a_key.empty() && !a_actor.get()->HasKeywordString(a_key))
+			if (!a_key.empty() && !a_actor->HasKeywordString(a_key))
 			{
-				a_actor.get()->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>(a_key));
+				a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>(a_key));
 			}
 		}
 		else
 		{
-			if (Settings::GetSingleton()->general.LogTacticUser(a_actor.get().get(), log_key, false, false))
+			if (Settings::GetSingleton()->general.LogTacticUser(a_actor, log_key, false, false))
 			{
-				list.emplace_back(a_actor);
+				list.emplace_back(a_actor->GetHandle());
 
-				if (!a_var.empty() && !OnMeleeHitHook::GetBoolVariable(a_actor.get().get(), a_var))
+				if (!a_var.empty() && !OnMeleeHitHook::GetBoolVariable(a_actor, a_var))
 				{
-					a_actor.get()->SetGraphVariableBool(a_var, true);
+					a_actor->SetGraphVariableBool(a_var, true);
 				}
 
-				if (!a_key.empty() && !a_actor.get()->HasKeywordString(a_key))
+				if (!a_key.empty() && !a_actor->HasKeywordString(a_key))
 				{
-					a_actor.get()->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>(a_key));
+					a_actor->GetActorBase()->AddKeyword(RE::TESForm::LookupByEditorID<RE::BGSKeyword>(a_key));
 				}
 			}
 		}

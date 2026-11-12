@@ -44,7 +44,7 @@ namespace hooks
 	void HandleDialogueChoice();
 	void ApplyDialogueSetting();
 	void RegisterActorTactic(RE::ActorHandle &a_actor, std::vector<RE::ActorHandle> &list, bool add);
-	void TacticMaintenance(RE::ActorHandle a_actor, std::vector<RE::ActorHandle> &list, std::string a_var, std::string a_key, std::string log_key);
+	void TacticMaintenance(RE::Actor* a_actor, std::vector<RE::ActorHandle> &list, std::string a_var, std::string a_key, std::string log_key);
 
 	// void incrementLastFormID()
 	// {
